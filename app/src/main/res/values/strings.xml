@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Diagnosta RKZ</string>
+    <string name="textview">Aplikacja Diagnosta RKZ służy do porównywania różnych metod obliczania równowagi kwasowo zasadowej. \n
+                            \t Aby porównać ewaluację opartą na trzech metodach diagnostycznych musisz uzupełnić wszystkie dane.
+                            \n \t Brak uzupełnienia parametru \"Albuminy\" uniemożliwi ewaluację motodą wykorzystującą skorygowaną lukę anionową, natomiast brak uzupełnienia parametru \"SBE\" uniemożliwi ewaluację opartą o metodę Kopenhaską.
+                            \n \t Pamiętaj, że diagnozowanie wyłącznie w oparciu o wyniki laboratoryjne jest niezgodne ze sztuką lekarską, więc nie możesz opierać się wyłącznie na diagnozie niniejszego programu. </string>
+</resources>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityPorownanieDiagnoz">
+
+    <TextView
+        android:id="@+id/textViewZgodnoscWynikow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:text="Zgodnosc wynikow wyniosła X procent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewWynikMetodyFizjologicznej"
+        android:layout_width="190dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="14dp"
+        android:text="nie wprowadzono HCO3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewZgodnoscWynikow" />
+
+    <TextView
+        android:id="@+id/textViewWynikMetodyFizjologicznejZAgc"
+        android:layout_width="190dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="14dp"
+        android:text="nie wprowadzono Alb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyFizjologicznej" />
+
+    <TextView
+        android:id="@+id/textViewWynikMetodyBaseExcess"
+        android:layout_width="190dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:text="nie wprowadzono SBE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyFizjologicznejZAgc" />
+
+    <TextView
+        android:id="@+id/textViewMetodaFizjologiczna"
+        android:layout_width="130dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="100dp"
+        android:text="wynik metody fizjologicznej:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewZgodnoscWynikow" />
+
+    <TextView
+        android:id="@+id/textViewMetodaFizjologicznaZAgc"
+        android:layout_width="130dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="28dp"
+        android:text="wynik metody fizjologicznej                          z AGc:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMetodaFizjologiczna" />
+
+    <TextView
+        android:id="@+id/textViewMetodaBaseExcess"
+        android:layout_width="130dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="28dp"
+        android:text="wynik metody         Base Excess:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMetodaFizjologicznaZAgc" />
+
+    <Button
+        android:id="@+id/buttonDodajDoBazy"
+        android:layout_width="140dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="72dp"
+        android:text="dodaj do bazy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.846"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyBaseExcess" />
+
+    <Button
+        android:id="@+id/buttonWrocDoMenu"
+        android:layout_width="130dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="72dp"
+        android:text="wróć do menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMetodaBaseExcess" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
