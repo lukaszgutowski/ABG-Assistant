@@ -7,10 +7,20 @@
     tools:context=".ActivityMenu">
 
     <Button
+        android:id="@+id/buttonSettings"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/settings3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonWprowadzanieDanych" />
+
+    <Button
         android:id="@+id/buttonWprowadzanieDanych"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Wprowadzanie Danych"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/input3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,23 +28,26 @@
         app:layout_constraintVertical_bias="0.325" />
 
     <Button
-        android:id="@+id/buttonBazaPacjentow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="Baza Pacjentów"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonWprowadzanieDanych" />
-
-    <Button
         android:id="@+id/buttonInformacje"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="informacje"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/informations3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonBazaPacjentow" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonSettings" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="top background"
+        android:cropToPadding="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

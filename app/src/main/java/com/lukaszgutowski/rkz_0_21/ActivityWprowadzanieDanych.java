@@ -528,14 +528,14 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 EditText editTextAg = (EditText) findViewById(R.id.editTextAg);
                 EditText editTextAlb = (EditText) findViewById(R.id.editTextAlb);
                 EditText editTextSbe = (EditText) findViewById(R.id.editTextSbe);
-                EditText editTextImie = (EditText) findViewById(R.id.editTextImie);
+                /*EditText editTextImie = (EditText) findViewById(R.id.editTextImie);
                     String Imie = editTextImie.getText().toString();
                 EditText editTextNazwisko = (EditText) findViewById(R.id.editTextNazwisko);
                     String Nazwisko = editTextNazwisko.getText().toString();
+                */
 
 
-
-                if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 && editTextSbe.length() !=0 && editTextImie.length() != 0 && editTextNazwisko.length() !=0){
+                if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 && editTextSbe.length() !=0 ){
                     //Toast.makeText(ActivityWprowadzanieDanych.this, "obliczanie metodą fizjologiczną i z AGc", Toast.LENGTH_SHORT).show();
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
@@ -551,14 +551,14 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
                     intentPrzejdzDoDiagnoz1.putExtra("2", metodaNadrzednaAgc(ph, paco2, hco3, agc ));
                     intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag ));
-                    intentPrzejdzDoDiagnoz1.putExtra("4", Imie);
-                    intentPrzejdzDoDiagnoz1.putExtra("5", Nazwisko);
+                    //intentPrzejdzDoDiagnoz1.putExtra("4", Imie);
+                    //intentPrzejdzDoDiagnoz1.putExtra("5", Nazwisko);
 
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }
 
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 && editTextSbe.length() !=0 && editTextImie.length() != 0){
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 && editTextSbe.length() !=0 ){
                     //Toast.makeText(ActivityWprowadzanieDanych.this, "obliczanie metodą fizjologiczną i z AGc", Toast.LENGTH_SHORT).show();
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
@@ -574,13 +574,13 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
                     intentPrzejdzDoDiagnoz1.putExtra("2", metodaNadrzednaAgc(ph, paco2, hco3, agc ));
                     intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag ));
-                    intentPrzejdzDoDiagnoz1.putExtra("4", Imie);
+                    //intentPrzejdzDoDiagnoz1.putExtra("4", Imie);
 
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }
 
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 && editTextSbe.length() !=0 && editTextNazwisko.length() !=0){
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 && editTextSbe.length() !=0 ){
                     //Toast.makeText(ActivityWprowadzanieDanych.this, "obliczanie metodą fizjologiczną i z AGc", Toast.LENGTH_SHORT).show();
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
@@ -596,7 +596,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
                     intentPrzejdzDoDiagnoz1.putExtra("2", metodaNadrzednaAgc(ph, paco2, hco3, agc ));
                     intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag ));
-                    intentPrzejdzDoDiagnoz1.putExtra("5", Nazwisko);
+                    //intentPrzejdzDoDiagnoz1.putExtra("5", Nazwisko);
 
                     startActivity(intentPrzejdzDoDiagnoz1);
 
@@ -623,7 +623,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
                 }
 
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 && editTextImie.length() != 0 && editTextNazwisko.length() !=0 ){
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 ){
 
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
@@ -637,13 +637,13 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
                     intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
                     intentPrzejdzDoDiagnoz1.putExtra("2", metodaNadrzednaAgc(ph, paco2, hco3, agc ));
-                    intentPrzejdzDoDiagnoz1.putExtra("4", Imie);
-                    intentPrzejdzDoDiagnoz1.putExtra("5", Nazwisko);
+                    //intentPrzejdzDoDiagnoz1.putExtra("4", Imie);
+                    //intentPrzejdzDoDiagnoz1.putExtra("5", Nazwisko);
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }
 
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 && editTextImie.length() != 0 ){
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 ){
 
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
@@ -657,12 +657,12 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
                     intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
                     intentPrzejdzDoDiagnoz1.putExtra("2", metodaNadrzednaAgc(ph, paco2, hco3, agc ));
-                    intentPrzejdzDoDiagnoz1.putExtra("4", Imie);
+                    //intentPrzejdzDoDiagnoz1.putExtra("4", Imie);
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }
 
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 && editTextNazwisko.length() !=0 ){
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 ){
 
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
@@ -676,12 +676,12 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
                     intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
                     intentPrzejdzDoDiagnoz1.putExtra("2", metodaNadrzednaAgc(ph, paco2, hco3, agc ));
-                    intentPrzejdzDoDiagnoz1.putExtra("5", Nazwisko);
+                    //intentPrzejdzDoDiagnoz1.putExtra("5", Nazwisko);
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }
 
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextSbe.length() !=0 && editTextImie.length() != 0 && editTextNazwisko.length() !=0) {
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextSbe.length() !=0 ) {
                     //Toast.makeText(ActivityWprowadzanieDanych.this, "obliczanie metodą fizjologiczną i z AGc", Toast.LENGTH_SHORT).show();
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
@@ -693,13 +693,13 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
                     intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag));
                     intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag));
-                    intentPrzejdzDoDiagnoz1.putExtra("4", Imie);
-                    intentPrzejdzDoDiagnoz1.putExtra("5", Nazwisko);
+                    //intentPrzejdzDoDiagnoz1.putExtra("4", Imie);
+                    //intentPrzejdzDoDiagnoz1.putExtra("5", Nazwisko);
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }
 
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextSbe.length() !=0 && editTextImie.length() != 0 ) {
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextSbe.length() !=0 ) {
                     //Toast.makeText(ActivityWprowadzanieDanych.this, "obliczanie metodą fizjologiczną i z AGc", Toast.LENGTH_SHORT).show();
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
@@ -711,12 +711,12 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
                     intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag));
                     intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag));
-                    intentPrzejdzDoDiagnoz1.putExtra("4", Imie);
+                    //intentPrzejdzDoDiagnoz1.putExtra("4", Imie);
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }
 
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextSbe.length() !=0 && editTextNazwisko.length() !=0) {
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextSbe.length() !=0 ) {
                     //Toast.makeText(ActivityWprowadzanieDanych.this, "obliczanie metodą fizjologiczną i z AGc", Toast.LENGTH_SHORT).show();
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
@@ -728,7 +728,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
                     intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag));
                     intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag));
-                    intentPrzejdzDoDiagnoz1.putExtra("5", Nazwisko);
+                    //intentPrzejdzDoDiagnoz1.putExtra("5", Nazwisko);
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }
@@ -749,7 +749,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
                 }
 
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextImie.length() != 0 && editTextNazwisko.length() !=0){
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 ){
 
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
@@ -758,13 +758,13 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
                     Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
                     intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
-                    intentPrzejdzDoDiagnoz1.putExtra("4", Imie);
-                    intentPrzejdzDoDiagnoz1.putExtra("5", Nazwisko);
+                    //intentPrzejdzDoDiagnoz1.putExtra("4", Imie);
+                    //intentPrzejdzDoDiagnoz1.putExtra("5", Nazwisko);
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }
 
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextImie.length() != 0 ){
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 ){
 
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
@@ -773,12 +773,12 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
                     Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
                     intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
-                    intentPrzejdzDoDiagnoz1.putExtra("4", Imie);
+                    //intentPrzejdzDoDiagnoz1.putExtra("4", Imie);
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }
 
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextNazwisko.length() !=0){
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 ){
 
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
@@ -787,7 +787,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
                     Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
                     intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
-                    intentPrzejdzDoDiagnoz1.putExtra("5", Nazwisko);
+                    //intentPrzejdzDoDiagnoz1.putExtra("5", Nazwisko);
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }

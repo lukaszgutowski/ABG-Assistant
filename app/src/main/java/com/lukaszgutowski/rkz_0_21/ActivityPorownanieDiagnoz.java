@@ -152,7 +152,7 @@ public class ActivityPorownanieDiagnoz extends AppCompatActivity {
         }
 
 
-        Button buttonDodajDoBazy = (Button) findViewById(R.id.buttonDodajDoBazy);
+        /*Button buttonDodajDoBazy = (Button) findViewById(R.id.buttonDodajDoBazy);
         buttonDodajDoBazy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -193,7 +193,7 @@ public class ActivityPorownanieDiagnoz extends AppCompatActivity {
                 intentDoBazyZPorownania.putExtra("5a", Nazwisko);
                 startActivity(intentDoBazyZPorownania);
             }
-        });
+        });*/
 
        }
 
