@@ -11,10 +11,10 @@
         android:id="@+id/textViewMetodaFizjologiczna"
         android:layout_width="130dp"
         android:layout_height="45dp"
-        android:layout_marginTop="172dp"
-        android:text="wynik metody fizjologicznej:"
+        android:layout_marginTop="64dp"
+        android:text="Boston approach result:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewZgodnoscWynikow" />
 
@@ -23,29 +23,29 @@
         android:layout_width="130dp"
         android:layout_height="56dp"
         android:layout_marginTop="28dp"
-        android:text="wynik metody fizjologicznej                          z AGc:"
+        android:text="Boston approach with AGc result:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMetodaFizjologiczna" />
 
     <TextView
         android:id="@+id/textViewWynikMetodyBaseExcess"
         android:layout_width="190dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="38dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="12dp"
-        android:text="nie wprowadzono SBE"
+        android:text="you didn't enter SBE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyFizjologicznejZAgc" />
 
     <TextView
         android:id="@+id/textViewWynikMetodyBaseExcess2"
-        android:layout_width="190dp"
-        android:layout_height="45dp"
+        android:layout_width="189dp"
+        android:layout_height="53dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="12dp"
-        android:text="nie wprowadzono SBE / Alb"
+        android:text="you didn't enter SBE / Alb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyBaseExcess" />
 
@@ -53,19 +53,19 @@
         android:id="@+id/textViewWynikMetodyFizjologicznej"
         android:layout_width="190dp"
         android:layout_height="45dp"
-        android:layout_marginTop="172dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="12dp"
-        android:text="nie wprowadzono HCO3"
+        android:text="you didn't enter HCO3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewZgodnoscWynikow" />
 
     <TextView
         android:id="@+id/textViewWynikMetodyFizjologicznejZAgc"
         android:layout_width="190dp"
-        android:layout_height="45dp"
+        android:layout_height="56dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="12dp"
-        android:text="nie wprowadzono Alb"
+        android:text="you didn't enter Alb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyFizjologicznej" />
 
@@ -74,20 +74,20 @@
         android:layout_width="130dp"
         android:layout_height="45dp"
         android:layout_marginTop="28dp"
-        android:text="wynik metody         Base Excess:"
+        android:text="Copenhagen approach result:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMetodaFizjologicznaZAgc" />
 
     <TextView
         android:id="@+id/textViewMetodaBaseExcessZAgc"
         android:layout_width="130dp"
-        android:layout_height="45dp"
+        android:layout_height="52dp"
         android:layout_marginTop="28dp"
-        android:text="wynik metody         Base Excess z AGc:"
+        android:text="Copenhagen approach with AGc result:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMetodaBaseExcess" />
 
@@ -95,13 +95,22 @@
         android:id="@+id/buttonWrocDoMenu"
         android:layout_width="130dp"
         android:layout_height="45dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="28dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/back"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonWrocDoMenu2"
+        android:layout_width="130dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/remarks"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.433"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintHorizontal_bias="0.715"
+        app:layout_constraintStart_toEndOf="@+id/buttonWrocDoMenu" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -110,18 +119,21 @@
         android:adjustViewBounds="true"
         android:cropToPadding="false"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/background2" />
 
     <TextView
         android:id="@+id/textViewZgodnoscWynikow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_width="300dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="36dp"
+        android:text="The compliance of the results is X %"
+        android:textAlignment="center"
         android:textSize="20dp"
-        android:text="Zgodnosc wynikow wyniosła X procent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
