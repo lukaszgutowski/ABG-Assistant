@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/textViewMetodaFizjologiczna"
         android:layout_width="130dp"
-        android:layout_height="45dp"
+        android:layout_height="60dp"
         android:layout_marginTop="64dp"
         android:text="Boston approach result:"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +21,7 @@
     <TextView
         android:id="@+id/textViewMetodaFizjologicznaZAgc"
         android:layout_width="130dp"
-        android:layout_height="56dp"
+        android:layout_height="60dp"
         android:layout_marginTop="28dp"
         android:text="Boston approach with AGc result:"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,8 +51,8 @@
 
     <TextView
         android:id="@+id/textViewWynikMetodyFizjologicznej"
-        android:layout_width="190dp"
-        android:layout_height="45dp"
+        android:layout_width="191dp"
+        android:layout_height="60dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="12dp"
         android:text="you didn't enter HCO3"
@@ -62,7 +62,7 @@
     <TextView
         android:id="@+id/textViewWynikMetodyFizjologicznejZAgc"
         android:layout_width="190dp"
-        android:layout_height="56dp"
+        android:layout_height="60dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="12dp"
         android:text="you didn't enter Alb"

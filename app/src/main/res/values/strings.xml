@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">Diagnosta RKZ</string>
-    <string name="textview">Aplikacja Diagnosta RKZ służy do porównywania różnych metod obliczania równowagi kwasowo zasadowej. \n
-                            \t Aby porównać ewaluację opartą na trzech metodach diagnostycznych musisz uzupełnić wszystkie dane.
-                            \n \t Brak uzupełnienia parametru \"Albuminy\" uniemożliwi ewaluację motodą wykorzystującą skorygowaną lukę anionową, natomiast brak uzupełnienia parametru \"SBE\" uniemożliwi ewaluację opartą o metodę Kopenhaską.
-                            \n \t Pamiętaj, że diagnozowanie wyłącznie w oparciu o wyniki laboratoryjne jest niezgodne ze sztuką lekarską, więc nie możesz opierać się wyłącznie na diagnozie niniejszego programu. </string>
+    <string name="textview"> This application has been created to enable comparison of results derived from Boston and Copenhagen approaches, and usage of corrected Anion Gap.\n
+                            \t  To compare results derived from all for combinations you have to enter all required data.
+                            \n \t If you will not enter Albumine you will not be able to get results from Boston nor Copenhagen approach with corrected AG.
+                            \n \t If you will not enter SBE you will not be able to get results from Copenhagen approach with and without corrected AG.
+                            \n \t Remember, that this application is stressing out only laboratory results. It has many limitations: reference values are characteristic for certain groups and laboratories,
+                                all abg diagnosing equations are being questioned and so on. It is highly NOT recommended to diagnose only on basis of evaluation made by this application.
+                                </string>
+
+
 </resources>
