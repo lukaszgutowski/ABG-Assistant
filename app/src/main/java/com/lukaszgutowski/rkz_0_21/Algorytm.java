@@ -183,7 +183,7 @@ public class Algorytm {
         return 1.5 * hco3 + 8;
     }
     static double dajOdpowiedzHco3(double hco3, double paco2){
-        //TODO sprawdzić czy math.abs działa dobrze, czy kombinować dalej
+        //TODO to jest stary sposób, podmienić go na nowy napisany  w wierszu 202
         return Math.round (Math.abs(24 - hco3) / (Math.abs(paco2 - 40) / 10))*10/10;
     }
     static double dajPrzewidywanePaco2Zasadowe (double hco3){
@@ -197,6 +197,31 @@ public class Algorytm {
     static double dajGapGapRatio (double ag, double hco3){
         return Math.abs(ag - 7) / Math.abs(24 - hco3);
     }
+    //
+    //
+    //TODO upewnić się że to jest dobrze i działa bez Math. Abs  // bo założyłem, że jak wyniki delty będą minusowe, to poleci w drugą stronę
+    //
+    //
+    static double dajDeltaPaco2 ( double paco2) {
+        return paco2 - 40;
+    }
+
+    static double szacowaneHco3KwOddOstra ( double paco2) {
+        double deltaPaco2 = dajDeltaPaco2 (paco2);
+        return deltaPaco2 * 0.1 + 24;
+    }
+
+    static double szacowaneHco3KwOddPrzewlA ( double paco2) {
+        double deltaPaco2 = dajDeltaPaco2 (paco2);
+        return deltaPaco2 * 0.4 + 24;
+    }
+
+    static double szacowaneHco3KwOddPrzewlB ( double paco2) {
+        double deltaPaco2 = dajDeltaPaco2 (paco2);
+        return deltaPaco2 * 0.5 + 24;
+    }
+
+
 
 
     static String kwasica (double hco3, double paco2, double ag){

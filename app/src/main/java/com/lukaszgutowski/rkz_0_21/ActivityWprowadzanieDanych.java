@@ -233,21 +233,21 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 }
                 else if (odpowiedzHco3 >= 1 - (odpowiedzHco3 * 0.05) && odpowiedzHco3 <= 1 + (odpowiedzHco3 * 0.05)){
                     //System.out.println("ostra kwasica oddechowa");
-                    return "ostra kwasica oddechowa";
+                    return "acute respiratory acidosis";
                 }
 
                 else if (odpowiedzHco3 >= 1 + (odpowiedzHco3 * 0.05) && odpowiedzHco3 < 4) {
                     //System.out.println("kwasica oddechowa");
-                    return "kwasica oddechowa";
+                    return "respiratory acidosis";
                 }
 
                 else if (odpowiedzHco3 >= 4 && odpowiedzHco3 <= 5 + (odpowiedzHco3 * 0.05)) {
                     //System.out.println("przewlekła kwasica oddechowa");
-                    return "przewlekła kwasica oddechowa";
+                    return "chronic respiratory acidosis";
                 }
 
                 else {
-                    return "kwasica oddechowa i zasadowica metaboliczna";
+                    return "respiratory acidosis and metabolic alkalosis";
                 }
 
             }
@@ -630,7 +630,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     //return "kwasica oddechowa i kwasica metaboliczna";
 
                     if (ag <= 11){
-                        return "Nagma + respiratory acidosis";
+                        return "Nagma and respiratory acidosis";
                         //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
                     }
 
@@ -662,21 +662,21 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 }
                 else if (odpowiedzHco3 >= 1 - (odpowiedzHco3 * 0.05) && odpowiedzHco3 <= 1 + (odpowiedzHco3 * 0.05)){
                     //System.out.println("ostra kwasica oddechowa");
-                    return "ostra kwasica oddechowa";
+                    return "acute respiratory acidosis";
                 }
 
                 else if (odpowiedzHco3 >= 1 + (odpowiedzHco3 * 0.05) && odpowiedzHco3 < 4) {
                     //System.out.println("kwasica oddechowa");
-                    return "kwasica oddechowa";
+                    return "respiratory acidosis";
                 }
 
                 else if (odpowiedzHco3 >= 4 && odpowiedzHco3 <= 5 + (odpowiedzHco3 * 0.05)) {
                     //System.out.println("przewlekła kwasica oddechowa");
-                    return "przewlekła kwasica oddechowa";
+                    return "chronic respiratory acidosis";
                 }
 
                 else {
-                    return "kwasica oddechowa i zasadowica metaboliczna";
+                    return "respiratory acidosis and metabolic alkalosis";
                 }
 
             }
@@ -986,7 +986,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             }
 
             else if ( sbe == 0.4 * (paco2 - 40)){
-                System.out.println("przewlekłą zasadowica oddechowa");
+                System.out.println("przewlekła zasadowica oddechowa");
                 return "przewlekła zasadowica oddechowa";
             }
 
