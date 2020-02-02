@@ -4,7 +4,7 @@ public class Algorytm {
 
 
     static double dajAgc (double alb, double ag) {
-        return (2.5*(40-alb)) + ag;
+        return (0.25*(40-alb)) + ag;
     }
 
     static String metodaNadrzednaAgc (double ph, double paco2, double hco3, double agc){
@@ -17,7 +17,7 @@ public class Algorytm {
         }
 
         else{
-            return "pH w normie";
+            return normatywne (hco3, paco2, agc);
         }
 
     }
@@ -211,9 +211,21 @@ public class Algorytm {
 
 
     static double dajGapGapRatio (double ag, double hco3){
-        return Math.abs(ag - 7) / Math.abs(24 - hco3);
-        //TODO OGARNĄĆ TO!!!!!!! bo na razie są przypadki gdzie jest dzielenie przez 0!
+        if (ag == 7 && hco3 == 24){
+            return 1;
+        }
+        else if ( hco3 == 24){
+            return Math.abs(ag - 7) / 0.01;
+        }
+        else if (ag == 7 ) {
+            return 0.01 / Math.abs( 24 - hco3);
+        }
+        else {
+            return Math.abs(ag - 7) / Math.abs(24 - hco3);
+            //TODO przemyśleć, czy nie lepiej byłoby z wynikami odejmowania zamiast dzielenia, podejrzane to
+        }
     }
+
 
 
     //tutaj załatwiam tylko kwasice oddechowe
