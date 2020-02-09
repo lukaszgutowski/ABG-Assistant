@@ -11,10 +11,59 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
 
+    static double dajSzacowaneHco3KwOddOstra ( double paco2) {
+        double deltaPaco2 = paco2 - 40;
+        return deltaPaco2 * 0.1 + 24;
+    }
+
+    static double dajSzacowaneHco3KwOddPrzewlA ( double paco2) {
+        double deltaPaco2 = paco2 - 40;
+        return deltaPaco2 * 0.4 + 24;
+    }
+
+    static double dajSzacowaneHco3KwOddPrzewlB ( double paco2) {
+        double deltaPaco2 = paco2 - 40;
+        return deltaPaco2 * 0.5 + 24;
+    }
+
+    //szacowane kompensacje dla zasadowic oddechowaych
+    static double dajSzacowaneHco3ZasOddOstra ( double paco2) {
+        double deltaPaco2 = 40 - paco2;
+        return 24 - deltaPaco2 * 0.2;
+    }
+
+    static double dajSzacowaneHco3ZasOddPrzewlA ( double paco2) {
+        double deltaPaco2 = 40 - paco2;
+        return 24 - deltaPaco2 * 0.4;
+    }
+
+    static double dajSzacowaneHco3ZasOddPrzewlB ( double paco2) {
+        double deltaPaco2 = 40 - paco2;
+        return 24 - deltaPaco2 * 0.5;
+    }
+
+
+    static double dajPrzewidywanePaco2 (double hco3){
+        return 1.5 * hco3 + 8;
+    }
+
+
+
+    static double dajPrzewidywanePaco2Zasadowe (double hco3){
+        return (0.7* (hco3 - 24)) + 40;
+    }
+
+
+
+
+
+
+
 
     static double dajAgc (double alb, double ag) {
-        return (2.5*(40-alb)) + ag;
-            }
+        return (0.25*(40-alb)) + ag;
+    }
+    //TODO testując sprawdzić czy rzeczywiście jest to poprawnie liczone
 
     static String metodaNadrzednaAgc (double ph, double paco2, double hco3, double agc){
         if(ph < 7.36){
@@ -32,10 +81,37 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
     }
 
 
+
+
+
+    static double dajAgcGapRatio (double agc, double hco3){
+        if (agc == 7 && hco3 == 24){
+            return 1;
+        }
+        else if ( hco3 == 24){
+            return Math.abs(agc - 7) / 0.01;
+        }
+        else if (agc == 7 ) {
+            return 0.01 / Math.abs( 24 - hco3);
+        }
+        else {
+            return Math.abs(agc - 7) / Math.abs(24 - hco3);
+            //TODO przemyśleć, czy nie lepiej byłoby z wynikami odejmowania zamiast dzielenia
+        }
+    }
+
+
+
+
+
+
+
     static String kwasicaAgc (double hco3, double paco2, double agc){
         double przewidywanePaco2 = dajPrzewidywanePaco2(hco3);
-        double odpowiedzHco3 = dajOdpowiedzHco3(hco3, paco2);
-        double gapGapRatio = dajGapGapRatio(agc, hco3);
+        double agcGapRatio = dajAgcGapRatio(agc, hco3);
+        double szacowaneHco3KwOddOstra = dajSzacowaneHco3KwOddOstra (paco2);
+        double szacowaneHco3KwOddPrzewlA = dajSzacowaneHco3KwOddPrzewlA (paco2);
+        double szacowaneHco3KwOddPrzewlB = dajSzacowaneHco3KwOddPrzewlB (paco2);
 
         if ( paco2 <= 44){
 
@@ -45,7 +121,8 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             else {
                 //metabolic acidosis, checking if pCO2 response is accurate
 
-                if (paco2 < ( (przewidywanePaco2 -2) - (przewidywanePaco2 * 0.05) )  ){
+                //TODO na razie przew PaCO2 jest z granicą +/- 5% przemyśleć to jeszcze, czy nie trzeba tego zmienić na ścisłę zasady, albo na zakresy: prawdopodobne, mniej prawdopodobne (czyli 5 możliwości zamiast obecnych 3)
+                if (paco2 < 0.95 *(przewidywanePaco2 -2) ){
                     // System.out.println("kwasica metaboliczna i zasadowica oddechowa");
 
                     if (agc <= 11){
@@ -56,19 +133,19 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     else {
                         //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
 
-                        if (gapGapRatio < 0.8){
+                        if (agcGapRatio < 0.8){
                             return "Hagma, respiratory alkalosis, probably also Nagma ";
                         }
 
-                        else if (gapGapRatio >= 0.8 && gapGapRatio < 0.99){
+                        else if (agcGapRatio >= 0.8 && agcGapRatio < 0.99){
                             return "Hagma, respiratory alkalosis, possible Nagma";
                         }
 
-                        else if (gapGapRatio >= 0.99 && gapGapRatio <= 1.01){
+                        else if (agcGapRatio >= 0.99 && agcGapRatio <= 1.01){
                             return "Hagma + respiratory alkalosis";
                         }
 
-                        else if (gapGapRatio > 1.01 && gapGapRatio <= 1.2){
+                        else if (agcGapRatio > 1.01 && agcGapRatio <= 1.2){
                             return "Hagma, respiratory alkalosis, possible metabolic alkalosis";
                         }
 
@@ -78,7 +155,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     }
                 }
 
-                else if (paco2 > ( (przewidywanePaco2 +2) + (przewidywanePaco2 * 0.05) ) ){
+                else if (paco2 > 1.05 * (przewidywanePaco2 + 2) ){
                     // System.out.println("kwasica metaboliczna i kwasica oddechowa");
 
                     if (agc <= 11){
@@ -89,19 +166,19 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     else {
                         //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
 
-                        if (gapGapRatio < 0.8){
+                        if (agcGapRatio < 0.8){
                             return "Hagma, respiratory acidosis, probably also Nagma ";
                         }
 
-                        else if (gapGapRatio >= 0.8 && gapGapRatio < 0.99){
+                        else if (agcGapRatio >= 0.8 && agcGapRatio < 0.99){
                             return "Hagma, respiratory acidosis, possible Nagma";
                         }
 
-                        else if (gapGapRatio >= 0.99 && gapGapRatio <= 1.01){
+                        else if (agcGapRatio >= 0.99 && agcGapRatio <= 1.01){
                             return "Hagma + respiratory acidosis";
                         }
 
-                        else if (gapGapRatio > 1.01 && gapGapRatio <= 1.2){
+                        else if (agcGapRatio > 1.01 && agcGapRatio <= 1.2){
                             return "Hagma, respiratory acidosis, possible metabolic alkalosis";
                         }
 
@@ -114,6 +191,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
                 else {
                     //System.out.println(czysta kwasica metaboliczna);
+                    //czyli mamy zakres >=0.95 * (przewPaco2 -2) && <= 1.05 * (przewPaco2 + 2)
                     if (agc <= 11){
                         return "normal anion gap metabolic acidosis";
                         //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
@@ -122,19 +200,19 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     else {
                         //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
 
-                        if (gapGapRatio < 0.8){
+                        if (agcGapRatio < 0.8){
                             return "Hagma, probably also Nagma ";
                         }
 
-                        else if (gapGapRatio >= 0.8 && gapGapRatio < 0.99){
+                        else if (agcGapRatio >= 0.8 && agcGapRatio < 0.99){
                             return "Hagma, possible Nagma";
                         }
 
-                        else if (gapGapRatio >= 0.99 && gapGapRatio <= 1.01){
+                        else if (agcGapRatio >= 0.99 && agcGapRatio <= 1.01){
                             return "Hagma";
                         }
 
-                        else if (gapGapRatio > 1.01 && gapGapRatio <= 1.2){
+                        else if (agcGapRatio > 1.01 && agcGapRatio <= 1.2){
                             return "Hagma, possible metabolic alkalosis";
                         }
 
@@ -168,19 +246,19 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 else {
                     //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
 
-                    if (gapGapRatio < 0.8){
+                    if (agcGapRatio < 0.8){
                         return "Hagma, respiratory acidosis, probably also Nagma ";
                     }
 
-                    else if (gapGapRatio >= 0.8 && gapGapRatio < 0.99){
+                    else if (agcGapRatio >= 0.8 && agcGapRatio < 0.99){
                         return "Hagma, respiratory acidosis, possible Nagma";
                     }
 
-                    else if (gapGapRatio >= 0.99 && gapGapRatio <= 1.01){
+                    else if (agcGapRatio >= 0.99 && agcGapRatio <= 1.01){
                         return "Hagma + respiratory acidosis";
                     }
 
-                    else if (gapGapRatio > 1.01 && gapGapRatio <= 1.2){
+                    else if (agcGapRatio > 1.01 && agcGapRatio <= 1.2){
                         return "Hagma, respiratory acidosis, possible metabolic alkalosis";
                     }
 
@@ -196,8 +274,8 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
 
                 //TODO sprawdzić czy zaspany nie pomyliłem.spytac Kai o poprawność matematyczną rozwiązania
-                if (odpowiedzHco3  < 1 - (odpowiedzHco3 * 0.05) ){
-                    //System.out.println("kwasica oddechowa i kwasica metaboliczna");
+                if  (hco3 < 0.95 * szacowaneHco3KwOddOstra) {
+                    //było tak: ((odpowiedzHco3  < 1 - (odpowiedzHco3 * 0.05) )){
                     //return "kwasica oddechowa i kwasica metaboliczna";
 
                     if (agc <= 11){
@@ -208,19 +286,19 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     else {
                         //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
 
-                        if (gapGapRatio < 0.8){
+                        if (agcGapRatio < 0.8){
                             return "Hagma, respiratory acidosis, probably also Nagma ";
                         }
 
-                        else if (gapGapRatio >= 0.8 && gapGapRatio < 0.99){
+                        else if (agcGapRatio >= 0.8 && agcGapRatio < 0.99){
                             return "Hagma, respiratory acidosis, possible Nagma";
                         }
 
-                        else if (gapGapRatio >= 0.99 && gapGapRatio <= 1.01){
+                        else if (agcGapRatio >= 0.99 && agcGapRatio <= 1.01){
                             return "Hagma + respiratory acidosis";
                         }
 
-                        else if (gapGapRatio > 1.01 && gapGapRatio <= 1.2){
+                        else if (agcGapRatio > 1.01 && agcGapRatio <= 1.2){
                             return "Hagma, respiratory acidosis, possible metabolic alkalosis";
                         }
 
@@ -231,17 +309,18 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
 
                 }
-                else if (odpowiedzHco3 >= 1 - (odpowiedzHco3 * 0.05) && odpowiedzHco3 <= 1 + (odpowiedzHco3 * 0.05)){
+
+                else if (hco3 >= (0.95 * szacowaneHco3KwOddOstra) && hco3 <= (1.05 * szacowaneHco3KwOddOstra)){
                     //System.out.println("ostra kwasica oddechowa");
                     return "acute respiratory acidosis";
                 }
 
-                else if (odpowiedzHco3 >= 1 + (odpowiedzHco3 * 0.05) && odpowiedzHco3 < 4) {
+                else if (hco3 > (1.05 * szacowaneHco3KwOddOstra) && hco3 < szacowaneHco3KwOddPrzewlA) {
                     //System.out.println("kwasica oddechowa");
                     return "respiratory acidosis";
                 }
 
-                else if (odpowiedzHco3 >= 4 && odpowiedzHco3 <= 5 + (odpowiedzHco3 * 0.05)) {
+                else if (hco3 >=  szacowaneHco3KwOddPrzewlA && hco3 <= szacowaneHco3KwOddPrzewlB) {
                     //System.out.println("przewlekła kwasica oddechowa");
                     return "chronic respiratory acidosis";
                 }
@@ -259,8 +338,10 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
     static String zasadowicaAgc (double hco3, double paco2, double agc) {
         double przewidywanePaco2Zasadowe = dajPrzewidywanePaco2Zasadowe(hco3);
-        double odpowiedzHco3Zasadowe = dajOdpowiedzHco3Zasadowe(hco3, paco2);
-        double gapGapRatio = dajGapGapRatio(agc, hco3);
+        double agcGapRatio = dajAgcGapRatio(agc, hco3);
+        double szacowaneHco3ZasOddOstra = dajSzacowaneHco3ZasOddOstra (paco2);
+        double szacowaneHco3ZasOddPrzewlA = dajSzacowaneHco3ZasOddPrzewlA (paco2);
+        double szacowaneHco3ZasOddPrzewlB = dajSzacowaneHco3ZasOddPrzewlB (paco2);
 
         if (paco2 < 36) {
 
@@ -269,10 +350,9 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             } else {
                 //zasadowica oddechowa, teraz sprawdzam kompensację
                 //czyli parametry <= 26
-
-                if (odpowiedzHco3Zasadowe < 2 - (odpowiedzHco3Zasadowe * 0.05)) {
+                //TODO posprawdzać czy zakresy pokrywają całość; tak samo w kwasicy
+                if (hco3 < 0.95 * szacowaneHco3ZasOddOstra) {
                     //System.out.println("zasadowica oddechowa i kwasica metaboliczna");
-                    //return "zasadowica oddechowa i kwasica metaboliczna";
 
                     if (agc <= 11) {
                         return "Nagma + respiratory alkalosis";
@@ -280,13 +360,13 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     } else {
                         //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
 
-                        if (gapGapRatio < 0.8) {
+                        if (agcGapRatio < 0.8) {
                             return "Hagma, respiratory alkalosis, probably also Nagma ";
-                        } else if (gapGapRatio >= 0.8 && gapGapRatio < 0.99) {
+                        } else if (agcGapRatio >= 0.8 && agcGapRatio < 0.99) {
                             return "Hagma, respiratory alkalosis, possible Nagma";
-                        } else if (gapGapRatio >= 0.99 && gapGapRatio <= 1.01) {
+                        } else if (agcGapRatio >= 0.99 && agcGapRatio <= 1.01) {
                             return "Hagma + respiratory alkalosis";
-                        } else if (gapGapRatio > 1.01 && gapGapRatio <= 1.2) {
+                        } else if (agcGapRatio > 1.01 && agcGapRatio <= 1.2) {
                             return "Hagma, respiratory alkalosis, possible metabolic alkalosis";
                         } else {
                             return "Hagma, respiratory alkalosis, probably also metabolic alkalosis";
@@ -294,13 +374,13 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     }
 
 
-                } else if (odpowiedzHco3Zasadowe >= 2 - (odpowiedzHco3Zasadowe * 0.05) && odpowiedzHco3Zasadowe <= 2 + (odpowiedzHco3Zasadowe * 0.05)) {
+                } else if (hco3 >= (1.95 * szacowaneHco3ZasOddOstra) && hco3 <= (2.05 * szacowaneHco3ZasOddOstra)) {
                     //System.out.println("ostra kwasica oddechowa");
                     return "acute respiratory alkalosis";
-                } else if (odpowiedzHco3Zasadowe >= 2 + (odpowiedzHco3Zasadowe * 0.05) && odpowiedzHco3Zasadowe < 4) {
+                } else if (hco3 > (2.05 * szacowaneHco3ZasOddOstra) && hco3 < szacowaneHco3ZasOddPrzewlA) {
                     //System.out.println("kwasica oddechowa");
                     return "respiratory alkalosis ";
-                } else if (odpowiedzHco3Zasadowe >= 4 && odpowiedzHco3Zasadowe <= 5 + (odpowiedzHco3Zasadowe * 0.05)) {
+                } else if (hco3 >= szacowaneHco3ZasOddPrzewlA && hco3 <= szacowaneHco3ZasOddPrzewlB) {
                     //System.out.println("przewlekła kwasica oddechowa");
                     return "chronic respiratory alkalosis";
                 } else {
@@ -318,11 +398,11 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 //zas metaboliczna
 
 
-                if (paco2 < ((przewidywanePaco2Zasadowe - 2) - (przewidywanePaco2Zasadowe * 0.05))) {
+                if (paco2 <  0.95 * (przewidywanePaco2Zasadowe - 2) ) {
                     return "metabolic and respiratory alkalosis";
-                } else if (paco2 >= ((przewidywanePaco2Zasadowe - 2) - (przewidywanePaco2Zasadowe * 0.05)) && paco2 <= ((przewidywanePaco2Zasadowe - 2) - (przewidywanePaco2Zasadowe * 0.05))) {
+                } else if (paco2 >= 0.95 * ((przewidywanePaco2Zasadowe - 2) ) && paco2 <= 1.05 * (przewidywanePaco2Zasadowe + 2)) {
                     return "metabolic alkalosis";
-                } else {   //czyli paCO2 > ocz paco2
+                } else {   //czyli paCO2 > 1.05 * (ocz paco2 + 2)
                     return "metabolic alkalosis and respiratory acidosis";
                 }
             }
@@ -330,9 +410,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
     }
 
     static String normatywneAgc (double hco3, double paco2, double agc) {
-        double przewidywanePaco2 = dajPrzewidywanePaco2(hco3);
-        double odpowiedzHco3 = dajOdpowiedzHco3(hco3, paco2);
-        double gapGapRatio = dajGapGapRatio(agc, hco3);
+        double agcGapRatio = dajAgcGapRatio(agc, hco3);
 
         if (paco2 < 36){
             if (hco3 < 22){
@@ -344,13 +422,13 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 } else {
                     //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
 
-                    if (gapGapRatio < 0.8) {
+                    if (agcGapRatio < 0.8) {
                         return "Hagma, respiratory alkalosis, probably also Nagma ";
-                    } else if (gapGapRatio >= 0.8 && gapGapRatio < 0.99) {
+                    } else if (agcGapRatio >= 0.8 && agcGapRatio < 0.99) {
                         return "Hagma, respiratory alkalosis, possible Nagma";
-                    } else if (gapGapRatio >= 0.99 && gapGapRatio <= 1.01) {
+                    } else if (agcGapRatio >= 0.99 && agcGapRatio <= 1.01) {
                         return "Hagma + respiratory alkalosis";
-                    } else if (gapGapRatio > 1.01 && gapGapRatio <= 1.2) {
+                    } else if (agcGapRatio > 1.01 && agcGapRatio <= 1.2) {
                         return "Hagma, respiratory alkalosis, possible metabolic alkalosis";
                     } else {
                         return "Hagma, respiratory alkalosis, probably also metabolic alkalosis";
@@ -372,13 +450,13 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 } else {
                     //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
 
-                    if (gapGapRatio < 0.8) {
+                    if (agcGapRatio < 0.8) {
                         return "Hagma, probably also Nagma ";
-                    } else if (gapGapRatio >= 0.8 && gapGapRatio < 0.99) {
+                    } else if (agcGapRatio >= 0.8 && agcGapRatio < 0.99) {
                         return "Hagma, possible Nagma";
-                    } else if (gapGapRatio >= 0.99 && gapGapRatio <= 1.01) {
+                    } else if (agcGapRatio >= 0.99 && agcGapRatio <= 1.01) {
                         return "Hagma ";
-                    } else if (gapGapRatio > 1.01 && gapGapRatio <= 1.2) {
+                    } else if (agcGapRatio > 1.01 && agcGapRatio <= 1.2) {
                         return "Hagma, possible metabolic alkalosis";
                     } else {
                         return "Hagma, probably also metabolic alkalosis";
@@ -406,6 +484,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
 
 
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //
     //
@@ -420,9 +499,6 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
     ///
     //
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 
 
@@ -441,30 +517,33 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
     }
 
-    static double dajPrzewidywanePaco2 (double hco3){
-        return 1.5 * hco3 + 8;
-    }
-    static double dajOdpowiedzHco3(double hco3, double paco2){
-        //TODO sprawdzić czy math.abs działa dobrze, czy kombinować dalej
-        return Math.round (Math.abs(24 - hco3) / (Math.abs(paco2 - 40) / 10))*10/10;
-    }
-    static double dajPrzewidywanePaco2Zasadowe (double hco3){
-        return (0.7* (hco3 - 24)) + 40;
-    }
-    static double dajOdpowiedzHco3Zasadowe (double hco3, double paco2){
-        return Math.round((hco3 - 24) / ((paco2 -40) / 10))*10/10;
-        // długo rozkminiałem co ja tu wymyśliłem. Ale jest dobrze: wyliczam delta hco3 i delta paco2. Czyli wiem ile się zmieiniły od wartości idealnej
-        // porównoje ich stosunek (ale paCO2 zmniejszam 10x, bo musi być stosunek 1:10) Teraz wynik równania =1 oznacza, że na 1 HCO3 jest 10 paCO2.
-    }
+
+
+
     static double dajGapGapRatio (double ag, double hco3){
-        return Math.abs(ag - 7) / Math.abs(24 - hco3);
+        if (ag == 7 && hco3 == 24){
+            return 1;
+        }
+        else if ( hco3 == 24){
+            return Math.abs(ag - 7) / 0.01;
+        }
+        else if (ag == 7 ) {
+            return 0.01 / Math.abs( 24 - hco3);
+        }
+        else {
+            return Math.abs(ag - 7) / Math.abs(24 - hco3);
+            //TODO przemyśleć, czy nie lepiej byłoby z wynikami odejmowania zamiast dzielenia, podejrzane to
+        }
     }
+
 
 
     static String kwasica (double hco3, double paco2, double ag){
         double przewidywanePaco2 = dajPrzewidywanePaco2(hco3);
-        double odpowiedzHco3 = dajOdpowiedzHco3(hco3, paco2);
         double gapGapRatio = dajGapGapRatio(ag, hco3);
+        double szacowaneHco3KwOddOstra = dajSzacowaneHco3KwOddOstra (paco2);
+        double szacowaneHco3KwOddPrzewlA = dajSzacowaneHco3KwOddPrzewlA (paco2);
+        double szacowaneHco3KwOddPrzewlB = dajSzacowaneHco3KwOddPrzewlB (paco2);
 
         if ( paco2 <= 44){
 
@@ -474,7 +553,8 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             else {
                 //metabolic acidosis, checking if pCO2 response is accurate
 
-                if (paco2 < ( (przewidywanePaco2 -2) - (przewidywanePaco2 * 0.05) )  ){
+                //TODO na razie przew PaCO2 jest z granicą +/- 5% przemyśleć to jeszcze, czy nie trzeba tego zmienić na ścisłę zasady, albo na zakresy: prawdopodobne, mniej prawdopodobne (czyli 5 możliwości zamiast obecnych 3)
+                if (paco2 < 0.95 *(przewidywanePaco2 -2) ){
                     // System.out.println("kwasica metaboliczna i zasadowica oddechowa");
 
                     if (ag <= 11){
@@ -507,7 +587,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     }
                 }
 
-                else if (paco2 > ( (przewidywanePaco2 +2) + (przewidywanePaco2 * 0.05) ) ){
+                else if (paco2 > 1.05 * (przewidywanePaco2 + 2) ){
                     // System.out.println("kwasica metaboliczna i kwasica oddechowa");
 
                     if (ag <= 11){
@@ -543,6 +623,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
                 else {
                     //System.out.println(czysta kwasica metaboliczna);
+                    //czyli mamy zakres >=0.95 * (przewPaco2 -2) && <= 1.05 * (przewPaco2 + 2)
                     if (ag <= 11){
                         return "normal anion gap metabolic acidosis";
                         //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
@@ -625,12 +706,12 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
 
                 //TODO sprawdzić czy zaspany nie pomyliłem.spytac Kai o poprawność matematyczną rozwiązania
-                if (odpowiedzHco3  < 1 - (odpowiedzHco3 * 0.05) ){
-                    //System.out.println("kwasica oddechowa i kwasica metaboliczna");
+                if  (hco3 < 0.95 * szacowaneHco3KwOddOstra) {
+                    //było tak: ((odpowiedzHco3  < 1 - (odpowiedzHco3 * 0.05) )){
                     //return "kwasica oddechowa i kwasica metaboliczna";
 
                     if (ag <= 11){
-                        return "Nagma and respiratory acidosis";
+                        return "Nagma + respiratory acidosis";
                         //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
                     }
 
@@ -660,17 +741,18 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
 
                 }
-                else if (odpowiedzHco3 >= 1 - (odpowiedzHco3 * 0.05) && odpowiedzHco3 <= 1 + (odpowiedzHco3 * 0.05)){
+
+                else if (hco3 >= (0.95 * szacowaneHco3KwOddOstra) && hco3 <= (1.05 * szacowaneHco3KwOddOstra)){
                     //System.out.println("ostra kwasica oddechowa");
                     return "acute respiratory acidosis";
                 }
 
-                else if (odpowiedzHco3 >= 1 + (odpowiedzHco3 * 0.05) && odpowiedzHco3 < 4) {
+                else if (hco3 > (1.05 * szacowaneHco3KwOddOstra) && hco3 < szacowaneHco3KwOddPrzewlA) {
                     //System.out.println("kwasica oddechowa");
                     return "respiratory acidosis";
                 }
 
-                else if (odpowiedzHco3 >= 4 && odpowiedzHco3 <= 5 + (odpowiedzHco3 * 0.05)) {
+                else if (hco3 >=  szacowaneHco3KwOddPrzewlA && hco3 <= szacowaneHco3KwOddPrzewlB) {
                     //System.out.println("przewlekła kwasica oddechowa");
                     return "chronic respiratory acidosis";
                 }
@@ -682,14 +764,16 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             }
         }
 
-        // return "wrong input data";
+        // return "wrong data input";
 
     }
 
     static String zasadowica (double hco3, double paco2, double ag) {
         double przewidywanePaco2Zasadowe = dajPrzewidywanePaco2Zasadowe(hco3);
-        double odpowiedzHco3Zasadowe = dajOdpowiedzHco3Zasadowe(hco3, paco2);
         double gapGapRatio = dajGapGapRatio(ag, hco3);
+        double szacowaneHco3ZasOddOstra = dajSzacowaneHco3ZasOddOstra (paco2);
+        double szacowaneHco3ZasOddPrzewlA = dajSzacowaneHco3ZasOddPrzewlA (paco2);
+        double szacowaneHco3ZasOddPrzewlB = dajSzacowaneHco3ZasOddPrzewlB (paco2);
 
         if (paco2 < 36) {
 
@@ -698,10 +782,9 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             } else {
                 //zasadowica oddechowa, teraz sprawdzam kompensację
                 //czyli parametry <= 26
-
-                if (odpowiedzHco3Zasadowe < 2 - (odpowiedzHco3Zasadowe * 0.05)) {
+                //TODO posprawdzać czy zakresy pokrywają całość; tak samo w kwasicy
+                if (hco3 < 0.95 * szacowaneHco3ZasOddOstra) {
                     //System.out.println("zasadowica oddechowa i kwasica metaboliczna");
-                    //return "zasadowica oddechowa i kwasica metaboliczna";
 
                     if (ag <= 11) {
                         return "Nagma + respiratory alkalosis";
@@ -723,13 +806,13 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     }
 
 
-                } else if (odpowiedzHco3Zasadowe >= 2 - (odpowiedzHco3Zasadowe * 0.05) && odpowiedzHco3Zasadowe <= 2 + (odpowiedzHco3Zasadowe * 0.05)) {
+                } else if (hco3 >= (1.95 * szacowaneHco3ZasOddOstra) && hco3 <= (2.05 * szacowaneHco3ZasOddOstra)) {
                     //System.out.println("ostra kwasica oddechowa");
                     return "acute respiratory alkalosis";
-                } else if (odpowiedzHco3Zasadowe >= 2 + (odpowiedzHco3Zasadowe * 0.05) && odpowiedzHco3Zasadowe < 4) {
+                } else if (hco3 > (2.05 * szacowaneHco3ZasOddOstra) && hco3 < szacowaneHco3ZasOddPrzewlA) {
                     //System.out.println("kwasica oddechowa");
                     return "respiratory alkalosis ";
-                } else if (odpowiedzHco3Zasadowe >= 4 && odpowiedzHco3Zasadowe <= 5 + (odpowiedzHco3Zasadowe * 0.05)) {
+                } else if (hco3 >= szacowaneHco3ZasOddPrzewlA && hco3 <= szacowaneHco3ZasOddPrzewlB) {
                     //System.out.println("przewlekła kwasica oddechowa");
                     return "chronic respiratory alkalosis";
                 } else {
@@ -747,11 +830,11 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 //zas metaboliczna
 
 
-                if (paco2 < ((przewidywanePaco2Zasadowe - 2) - (przewidywanePaco2Zasadowe * 0.05))) {
+                if (paco2 <  0.95 * (przewidywanePaco2Zasadowe - 2) ) {
                     return "metabolic and respiratory alkalosis";
-                } else if (paco2 >= ((przewidywanePaco2Zasadowe - 2) - (przewidywanePaco2Zasadowe * 0.05)) && paco2 <= ((przewidywanePaco2Zasadowe - 2) - (przewidywanePaco2Zasadowe * 0.05))) {
+                } else if (paco2 >= 0.95 * ((przewidywanePaco2Zasadowe - 2) ) && paco2 <= 1.05 * (przewidywanePaco2Zasadowe + 2)) {
                     return "metabolic alkalosis";
-                } else {   //czyli paCO2 > ocz paco2
+                } else {   //czyli paCO2 > 1.05 * (ocz paco2 + 2)
                     return "metabolic alkalosis and respiratory acidosis";
                 }
             }
@@ -759,8 +842,6 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
     }
 
     static String normatywne (double hco3, double paco2, double ag) {
-        double przewidywanePaco2 = dajPrzewidywanePaco2(hco3);
-        double odpowiedzHco3 = dajOdpowiedzHco3(hco3, paco2);
         double gapGapRatio = dajGapGapRatio(ag, hco3);
 
         if (paco2 < 36){
@@ -831,11 +912,6 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             }
         }
     }
-
-
-
-
-
 
 
 
