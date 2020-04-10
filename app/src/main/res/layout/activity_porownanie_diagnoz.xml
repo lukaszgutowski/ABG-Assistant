@@ -22,7 +22,7 @@
         android:id="@+id/textViewMetodaFizjologicznaZAgc"
         android:layout_width="130dp"
         android:layout_height="60dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="46dp"
         android:text="Boston approach with AGc result:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
@@ -30,50 +30,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewMetodaFizjologiczna" />
 
     <TextView
-        android:id="@+id/textViewWynikMetodyBaseExcess"
-        android:layout_width="190dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="12dp"
-        android:text="you didn't enter SBE"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyFizjologicznejZAgc" />
-
-    <TextView
-        android:id="@+id/textViewWynikMetodyBaseExcess2"
-        android:layout_width="189dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="12dp"
-        android:text="you didn't enter SBE / Alb"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyBaseExcess" />
-
-    <TextView
-        android:id="@+id/textViewWynikMetodyFizjologicznej"
-        android:layout_width="191dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="12dp"
-        android:text="you didn't enter HCO3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewZgodnoscWynikow" />
-
-    <TextView
-        android:id="@+id/textViewWynikMetodyFizjologicznejZAgc"
-        android:layout_width="190dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="12dp"
-        android:text="you didn't enter Alb"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyFizjologicznej" />
-
-    <TextView
         android:id="@+id/textViewMetodaBaseExcess"
         android:layout_width="130dp"
         android:layout_height="45dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="50dp"
         android:text="Copenhagen approach result:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
@@ -81,15 +41,55 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewMetodaFizjologicznaZAgc" />
 
     <TextView
+        android:id="@+id/textViewWynikMetodyBaseExcess"
+        android:layout_width="200dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="16dp"
+        android:text="you didn't enter SBE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyFizjologicznejZAgc" />
+
+    <TextView
+        android:id="@+id/textViewWynikMetodyFizjologicznejZAgc"
+        android:layout_width="200dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:text="you didn't enter Alb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyFizjologicznej" />
+
+    <TextView
         android:id="@+id/textViewMetodaBaseExcessZAgc"
         android:layout_width="130dp"
         android:layout_height="52dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="56dp"
         android:text="Copenhagen approach with AGc result:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMetodaBaseExcess" />
+
+    <TextView
+        android:id="@+id/textViewWynikMetodyBaseExcess2"
+        android:layout_width="200dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="16dp"
+        android:text="you didn't enter Alb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyBaseExcess" />
+
+    <TextView
+        android:id="@+id/textViewWynikMetodyFizjologicznej"
+        android:layout_width="200dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="16dp"
+        android:text="you didn't enter HCO3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewZgodnoscWynikow" />
 
     <Button
         android:id="@+id/buttonWrocDoMenu"
