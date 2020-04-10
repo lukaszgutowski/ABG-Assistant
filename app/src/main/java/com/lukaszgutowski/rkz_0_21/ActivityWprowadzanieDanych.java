@@ -2638,9 +2638,6 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -2683,223 +2680,20 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     double sbe= dajSbe(hco3, ph);
 
 
-//                    if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 && editTextSbe.length() !=0 ){
-//                        double ph = Double.parseDouble(editTextPh.getText().toString());
-//                        double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
-//                        double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-//                        double ag = Double.parseDouble(editTextAg.getText().toString());
-//                        double alb = Double.parseDouble(editTextAlb.getText().toString());
-//                        double sbe = Double.parseDouble(editTextSbe.getText().toString());
-//
-//                        double agc= dajAgc(alb, ag);
-
 
                     Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
                     intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
                     intentPrzejdzDoDiagnoz1.putExtra("2", metodaNadrzednaAgc(ph, paco2, hco3, agc ));
                     intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag ));
+                    intentPrzejdzDoDiagnoz1.putExtra("4", metodaNadrzednaSbeAgc(ph, sbe, paco2, hco3, agc ));
 
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }
 
-//                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 && editTextSbe.length() !=0 ){
-//
-//                    double ph = Double.parseDouble(editTextPh.getText().toString());
-//                    double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
-//                    double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-//                    double ag = Double.parseDouble(editTextAg.getText().toString());
-//                    double alb = Double.parseDouble(editTextAlb.getText().toString());
-//                    double sbe = Double.parseDouble(editTextSbe.getText().toString());
-//
-//                    double agc= dajAgc(alb, ag);
-//
-//
-//                    Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
-//                    intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
-//                    intentPrzejdzDoDiagnoz1.putExtra("2", metodaNadrzednaAgc(ph, paco2, hco3, agc ));
-//                    intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag ));
-//
-//                    startActivity(intentPrzejdzDoDiagnoz1);
-//
-//                }
-//
-//                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 && editTextSbe.length() !=0 ){
-//
-//                    double ph = Double.parseDouble(editTextPh.getText().toString());
-//                    double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
-//                    double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-//                    double ag = Double.parseDouble(editTextAg.getText().toString());
-//                    double alb = Double.parseDouble(editTextAlb.getText().toString());
-//                    double sbe = Double.parseDouble(editTextSbe.getText().toString());
-//
-//                    double agc= dajAgc(alb, ag);
-//
-//
-//                    Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
-//                    intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
-//                    intentPrzejdzDoDiagnoz1.putExtra("2", metodaNadrzednaAgc(ph, paco2, hco3, agc ));
-//                    intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag ));
-//
-//
-//                    startActivity(intentPrzejdzDoDiagnoz1);
-//
-//                }
-//
-//                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 && editTextSbe.length() !=0 ){
-//                    double ph = Double.parseDouble(editTextPh.getText().toString());
-//                    double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
-//                    double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-//                    double ag = Double.parseDouble(editTextAg.getText().toString());
-//                    double alb = Double.parseDouble(editTextAlb.getText().toString());
-//                    double sbe = Double.parseDouble(editTextSbe.getText().toString());
-//
-//                    double agc= dajAgc(alb, ag);
-//
-//
-//                    Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
-//                    intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
-//                    intentPrzejdzDoDiagnoz1.putExtra("2", metodaNadrzednaAgc(ph, paco2, hco3, agc ));
-//                    intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag ));
-//
-//                    startActivity(intentPrzejdzDoDiagnoz1);
-//
-//                }
-//
-//                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 ){
-//
-//                    double ph = Double.parseDouble(editTextPh.getText().toString());
-//                    double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
-//                    double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-//                    double ag = Double.parseDouble(editTextAg.getText().toString());
-//                    double alb = Double.parseDouble(editTextAlb.getText().toString());
-//
-//                    double agc= dajAgc(alb, ag);
-//
-//
-//                    Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
-//                    intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
-//                    intentPrzejdzDoDiagnoz1.putExtra("2", metodaNadrzednaAgc(ph, paco2, hco3, agc ));
-//
-//                    startActivity(intentPrzejdzDoDiagnoz1);
-//
-//                }
-//
-//                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 ){
-//
-//                    double ph = Double.parseDouble(editTextPh.getText().toString());
-//                    double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
-//                    double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-//                    double ag = Double.parseDouble(editTextAg.getText().toString());
-//                    double alb = Double.parseDouble(editTextAlb.getText().toString());
-//
-//                    double agc= dajAgc(alb, ag);
-//
-//
-//                    Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
-//                    intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
-//                    intentPrzejdzDoDiagnoz1.putExtra("2", metodaNadrzednaAgc(ph, paco2, hco3, agc ));
-//
-//                    startActivity(intentPrzejdzDoDiagnoz1);
-//
-//                }
 
 
 
-
-
-
-
-
-
-
-
-
-
-/*
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 ){
-
-                    double ph = Double.parseDouble(editTextPh.getText().toString());
-                    double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
-                    double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-                    double ag = Double.parseDouble(editTextAg.getText().toString());
-                    double alb = Double.parseDouble(editTextAlb.getText().toString());
-
-                    double agc= dajAgc(alb, ag);
-
-
-                    Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
-                    intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
-                    intentPrzejdzDoDiagnoz1.putExtra("2", metodaNadrzednaAgc(ph, paco2, hco3, agc ));
-
-                    startActivity(intentPrzejdzDoDiagnoz1);
-
-                }
-
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextSbe.length() !=0 ) {
-
-                    double ph = Double.parseDouble(editTextPh.getText().toString());
-                    double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
-                    double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-                    double ag = Double.parseDouble(editTextAg.getText().toString());
-                    double sbe = Double.parseDouble(editTextSbe.getText().toString());
-
-
-                    Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
-                    intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag));
-                    intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag));
-
-                    startActivity(intentPrzejdzDoDiagnoz1);
-
-                }
-
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextSbe.length() !=0 ) {
-
-                    double ph = Double.parseDouble(editTextPh.getText().toString());
-                    double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
-                    double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-                    double ag = Double.parseDouble(editTextAg.getText().toString());
-                    double sbe = Double.parseDouble(editTextSbe.getText().toString());
-
-
-                    Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
-                    intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag));
-                    intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag));
-
-                    startActivity(intentPrzejdzDoDiagnoz1);
-
-                }
-
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextSbe.length() !=0 ) {
-                    double ph = Double.parseDouble(editTextPh.getText().toString());
-                    double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
-                    double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-                    double ag = Double.parseDouble(editTextAg.getText().toString());
-                    double sbe = Double.parseDouble(editTextSbe.getText().toString());
-
-
-                    Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
-                    intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag));
-                    intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag));
-
-                    startActivity(intentPrzejdzDoDiagnoz1);
-
-                }
-
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextSbe.length() !=0 ) {
-                    double ph = Double.parseDouble(editTextPh.getText().toString());
-                    double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
-                    double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-                    double ag = Double.parseDouble(editTextAg.getText().toString());
-                    double sbe = Double.parseDouble(editTextSbe.getText().toString());
-
-
-                    Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
-                    intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag));
-                    intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag));
-                    startActivity(intentPrzejdzDoDiagnoz1);
-
-                }
 
                 else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 ){
 
@@ -2908,70 +2702,11 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     double hco3 = Double.parseDouble(editTextHco3.getText().toString());
                     double ag = Double.parseDouble(editTextAg.getText().toString());
 
-                    Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
-                    intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
-
-                    startActivity(intentPrzejdzDoDiagnoz1);
-
-                }
-
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 ){
-
-                    double ph = Double.parseDouble(editTextPh.getText().toString());
-                    double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
-                    double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-                    double ag = Double.parseDouble(editTextAg.getText().toString());
+                    double sbe= dajSbe(hco3, ph);
 
                     Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
                     intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
-
-                    startActivity(intentPrzejdzDoDiagnoz1);
-
-                }
-
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 ){
-
-                    double ph = Double.parseDouble(editTextPh.getText().toString());
-                    double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
-                    double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-                    double ag = Double.parseDouble(editTextAg.getText().toString());
-
-                    Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
-                    intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
-
-                    startActivity(intentPrzejdzDoDiagnoz1);
-
-                }
-
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 ){
-
-                    double ph = Double.parseDouble(editTextPh.getText().toString());
-                    double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
-                    double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-                    double ag = Double.parseDouble(editTextAg.getText().toString());
-                    double alb = Double.parseDouble(editTextAlb.getText().toString());
-
-                    double agc= dajAgc(alb, ag);
-
-
-                    Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
-                    intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
-                    intentPrzejdzDoDiagnoz1.putExtra("2", metodaNadrzednaAgc(ph, paco2, hco3, agc ));
-                    startActivity(intentPrzejdzDoDiagnoz1);
-
-                }
-*/
-
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 ){
-
-                    double ph = Double.parseDouble(editTextPh.getText().toString());
-                    double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
-                    double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-                    double ag = Double.parseDouble(editTextAg.getText().toString());
-
-
-                    Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
-                    intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));;
+                    intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag ));
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }

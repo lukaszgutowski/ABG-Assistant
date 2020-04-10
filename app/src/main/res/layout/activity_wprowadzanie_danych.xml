@@ -66,7 +66,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
-                android:hint="enter AG mEq/l"
+                android:hint="enter AG [mEq/l]"
                 android:inputType="numberDecimal"
                 android:text=""
                 android:textSize="18dp"

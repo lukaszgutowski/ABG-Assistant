@@ -51,16 +51,14 @@ public class ActivityPorownanieDiagnoz extends AppCompatActivity {
             UzyskanyWynikBaseExcess = "you didn't enter SBE";
         };
 
-        /*String Imie = getIntent().getStringExtra("4");
-        if (Imie == null || Imie == "")
+        String UzyskanyWynikBaseExcessAgc = getIntent().getStringExtra("4");
+        if (UzyskanyWynikBaseExcessAgc == null || UzyskanyWynikBaseExcessAgc == "")
         {
-            Imie = "-";
+            UzyskanyWynikBaseExcessAgc = "you didn't enter SBE";
         };
-        String Nazwisko = getIntent().getStringExtra("5");
-        if (Nazwisko == null || Nazwisko == "")
-        {
-            Nazwisko = "-";
-        };*/
+
+
+
 
 
 
@@ -75,21 +73,26 @@ public class ActivityPorownanieDiagnoz extends AppCompatActivity {
         TextView textViewWynikMetodyBaseExcess = (TextView) findViewById(R.id.textViewWynikMetodyBaseExcess);
         textViewWynikMetodyBaseExcess.setText(UzyskanyWynikBaseExcess);
 
+
+
+        TextView textViewWynikMetodyBaseExcess2 = (TextView) findViewById(R.id.textViewWynikMetodyBaseExcess2);
+        textViewWynikMetodyBaseExcess2.setText(UzyskanyWynikBaseExcessAgc);
+
+
+
+
+
+
+
         Toast.makeText(ActivityPorownanieDiagnoz.this, "calculating finished successfully", Toast.LENGTH_SHORT).show();
         //Toast.makeText(ActivityPorownanieDiagnoz.this, Imie, Toast.LENGTH_SHORT).show();
 
         TextView textViewZgodnoscWynikow = findViewById(R.id.textViewZgodnoscWynikow);
 
-        if ( UzyskanyWynikFizjologiczny.equals(UzyskanyWynikFizjologicznyAgc) && UzyskanyWynikFizjologiczny.equals(UzyskanyWynikBaseExcess ) ) {
+        if ( UzyskanyWynikFizjologiczny.equals(UzyskanyWynikFizjologicznyAgc) && UzyskanyWynikFizjologiczny.equals(UzyskanyWynikBaseExcess ) && UzyskanyWynikFizjologiczny.equals(UzyskanyWynikBaseExcessAgc)) {
             textViewZgodnoscWynikow.setText("The compliance of the results is 100%");
         }
 
-
-        else if (UzyskanyWynikFizjologicznyAgc.equals("you didn't enter Alb") && UzyskanyWynikBaseExcess.equals("you didn't enter SBE" )){
-
-            textViewZgodnoscWynikow.setText("not enough data to compare results");
-
-        }
 
 
 
@@ -104,27 +107,54 @@ public class ActivityPorownanieDiagnoz extends AppCompatActivity {
         }
 
 
-        else if (UzyskanyWynikBaseExcess.equals("you didn't enter SBE")){
-            if ( UzyskanyWynikFizjologiczny.equals(UzyskanyWynikFizjologicznyAgc)){
-                textViewZgodnoscWynikow.setText("Comparing 2 approaches. The compliance of the results is 100%");
-            }
-            else {
-                textViewZgodnoscWynikow.setText("Comparing 2 approaches. The compliance of the results is 0%");
-            }
+        else if (UzyskanyWynikFizjologiczny.equals(UzyskanyWynikBaseExcess) &&  UzyskanyWynikFizjologiczny.equals(UzyskanyWynikFizjologicznyAgc)){
+            textViewZgodnoscWynikow.setText("The compliance of the results is 75%");
+        }
+
+        else if (UzyskanyWynikFizjologiczny.equals(UzyskanyWynikBaseExcess) &&  UzyskanyWynikFizjologiczny.equals(UzyskanyWynikBaseExcessAgc)){
+            textViewZgodnoscWynikow.setText("The compliance of the results is 75%");
+        }
+
+        else if (UzyskanyWynikFizjologiczny.equals(UzyskanyWynikFizjologicznyAgc) &&  UzyskanyWynikFizjologiczny.equals(UzyskanyWynikBaseExcessAgc)){
+            textViewZgodnoscWynikow.setText("The compliance of the results is 75%");
         }
 
 
-        else if (UzyskanyWynikFizjologiczny.equals(UzyskanyWynikBaseExcess)){
-            textViewZgodnoscWynikow.setText("Zgodność wyników wyniosła 66%");
+        else if (UzyskanyWynikFizjologicznyAgc.equals(UzyskanyWynikBaseExcess) &&  UzyskanyWynikFizjologicznyAgc.equals(UzyskanyWynikBaseExcessAgc)){
+            textViewZgodnoscWynikow.setText("The compliance of the results is 75%");
         }
+
+
+
+
         else if (UzyskanyWynikFizjologicznyAgc.equals(UzyskanyWynikBaseExcess)){
-            textViewZgodnoscWynikow.setText("Zgodność wyników wyniosła 66%");
+            textViewZgodnoscWynikow.setText("The compliance of the results is 50%");
         }
+
         else if (UzyskanyWynikFizjologicznyAgc.equals(UzyskanyWynikFizjologiczny)) {
-            textViewZgodnoscWynikow.setText("Zgodność wyników wyniosła 66%");
+            textViewZgodnoscWynikow.setText("The compliance of the results is 50%");
         }
+
+        else if (UzyskanyWynikFizjologiczny.equals(UzyskanyWynikBaseExcess)) {
+            textViewZgodnoscWynikow.setText("The compliance of the results is 50%");
+        }
+
+        else if (UzyskanyWynikFizjologiczny.equals(UzyskanyWynikBaseExcessAgc)) {
+            textViewZgodnoscWynikow.setText("The compliance of the results is 50%");
+        }
+
+        else if (UzyskanyWynikFizjologicznyAgc.equals(UzyskanyWynikBaseExcessAgc)) {
+            textViewZgodnoscWynikow.setText("The compliance of the results is 50%");
+        }
+
+        else if (UzyskanyWynikBaseExcess.equals(UzyskanyWynikBaseExcessAgc)) {
+            textViewZgodnoscWynikow.setText("The compliance of the results is 50%");
+        }
+
+
+
         else {
-            textViewZgodnoscWynikow.setText("Zgodność wyników wyniosła 0%");
+            textViewZgodnoscWynikow.setText("The compliance of the results is 0%");
         }
 
 
