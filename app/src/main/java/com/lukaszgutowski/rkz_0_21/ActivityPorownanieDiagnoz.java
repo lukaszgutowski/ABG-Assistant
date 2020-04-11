@@ -25,6 +25,18 @@ public class ActivityPorownanieDiagnoz extends AppCompatActivity {
 
 
 
+        Button buttonInformations = (Button) findViewById(R.id.buttonInformations);
+        buttonInformations.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentInformacjeZPorownanieDiagnoz = new Intent(ActivityPorownanieDiagnoz.this, ActivityInformacje.class);
+                startActivity(intentInformacjeZPorownanieDiagnoz);
+            }
+        });
+
+
+
+
         Button buttonWrocDoMenu = (Button) findViewById(R.id.buttonWrocDoMenu);
         buttonWrocDoMenu.setOnClickListener(new View.OnClickListener() {
             @Override

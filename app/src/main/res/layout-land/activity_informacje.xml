@@ -7,7 +7,7 @@
     tools:context=".ActivityInformacje">
 
     <Button
-        android:id="@+id/buttonInformacjeDoMenu"
+        android:id="@+id/buttonCautionDoMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="144dp"
@@ -15,12 +15,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toEndOf="@+id/textViewInformacje"
+        app:layout_constraintStart_toEndOf="@+id/textViewCaution"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.867" />
 
     <TextView
-        android:id="@+id/textViewInformacje"
+        android:id="@+id/textViewCaution"
         android:layout_width="453dp"
         android:layout_height="257dp"
         android:layout_marginStart="64dp"

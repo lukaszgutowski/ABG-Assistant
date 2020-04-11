@@ -8,30 +8,24 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ActivityInformacje extends AppCompatActivity {
+public class activity_caution extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_informacje);
+        setContentView(R.layout.activity_caution);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
-
-
-        Button buttonInformacjeDoMenu = (Button) findViewById(R.id.buttonCautionDoMenu);
-        buttonInformacjeDoMenu.setOnClickListener(new View.OnClickListener() {
+        Button buttonCautionDoMenu = (Button) findViewById(R.id.buttonCautionDoMenu);
+        buttonCautionDoMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentInformacjeDoMenu = new Intent(ActivityInformacje.this, ActivityMenu.class);
-                startActivity(intentInformacjeDoMenu);
+                Intent intentMenuZCaution = new Intent(activity_caution.this, ActivityMenu.class);
+                startActivity(intentMenuZCaution);
             }
         });
 
 
     }
-
 }
-
-

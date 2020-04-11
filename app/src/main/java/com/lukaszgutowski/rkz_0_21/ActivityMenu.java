@@ -26,14 +26,14 @@ public class ActivityMenu extends AppCompatActivity {
             }
         });
 
-//        Button buttonBazaPacjentow = (Button) findViewById(R.id.buttonBazaPacjentow);
-//        buttonBazaPacjentow.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intentBazaPacjentowZMenu = new Intent(ActivityMenu.this, ActivityBaza.class);
-//                startActivity(intentBazaPacjentowZMenu);
-//            }
-//        });
+        Button buttonSettings = (Button) findViewById(R.id.buttonSettings);
+        buttonSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentCautionZMenu = new Intent(ActivityMenu.this, activity_caution.class);
+                startActivity(intentCautionZMenu);
+            }
+        });
 
         Button buttonInformacje = (Button) findViewById(R.id.buttonInformacje);
         buttonInformacje.setOnClickListener(new View.OnClickListener() {

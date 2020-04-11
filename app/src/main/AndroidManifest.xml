@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityInformacje"></activity>
+        <activity android:name=".activity_caution"></activity>
+        <activity android:name=".ActivityInformacje" />
         <activity android:name=".ActivityPorownanieDiagnoz" />
-        <activity android:name=".ActivityWprowadzanieDanych"
-                android:windowSoftInputMode="adjustPan"/>
-
+        <activity
+            android:name=".ActivityWprowadzanieDanych"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ActivityMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
