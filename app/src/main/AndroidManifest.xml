@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ActivityInformacje"></activity>
-        <activity android:name=".ActivityBaza" />
         <activity android:name=".ActivityPorownanieDiagnoz" />
         <activity android:name=".ActivityWprowadzanieDanych"
                 android:windowSoftInputMode="adjustPan"/>

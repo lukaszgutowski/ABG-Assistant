@@ -1,11 +1,10 @@
 <resources>
-    <string name="app_name">Diagnosta RKZ</string>
-    <string name="textview"> This application has been created to enable comparison of results derived from Boston and Copenhagen approaches, and usage of corrected Anion Gap.\n
-                            \t  To compare results derived from all for combinations you have to enter all required data.
-                            \n \t If you will not enter Albumine you will not be able to get results from Boston nor Copenhagen approach with corrected AG.
-                            \n \t If you will not enter SBE you will not be able to get results from Copenhagen approach with and without corrected AG.
-                            \n \t Remember, that this application is stressing out only laboratory results. It has many limitations: reference values are characteristic for certain groups and laboratories,
-                                all abg diagnosing equations are being questioned and so on. It is highly NOT recommended to diagnose only on basis of evaluation made by this application.
+<string name="app_name">Diagnosta RKZ</string>
+<string name="textview">\n \t To compare results derived from all of the combinations, you have to enter all required data.
+    If you do not enter Albumine value, you will not be able to get results from the Boston approach with corrected AG nor the Copenhagen approach with corrected AG.
+    \n \t Remember that this application works based only on laboratory results.
+     It has many limitations: reference values are characteristic for specific groups and laboratories, all abg diagnosing equations are being questioned, and so on.
+    \n \t You should always take into account medical history and patients' state.
                                 </string>
 
 

@@ -7,89 +7,109 @@
     tools:context=".ActivityPorownanieDiagnoz">
 
 
-    <TextView
-        android:id="@+id/textViewMetodaFizjologiczna"
-        android:layout_width="130dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="64dp"
-        android:text="Boston approach result:"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonWrocDoMenu2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewZgodnoscWynikow" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3">
 
-    <TextView
-        android:id="@+id/textViewMetodaFizjologicznaZAgc"
-        android:layout_width="130dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="46dp"
-        android:text="Boston approach with AGc result:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMetodaFizjologiczna" />
 
-    <TextView
-        android:id="@+id/textViewMetodaBaseExcess"
-        android:layout_width="130dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="50dp"
-        android:text="Copenhagen approach result:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMetodaFizjologicznaZAgc" />
+        <TextView
+            android:id="@+id/textViewMetodaFizjologiczna"
+            android:layout_width="118dp"
+            android:layout_height="60dp"
+            android:text="Boston approach result:"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.098"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewWynikMetodyBaseExcess"
-        android:layout_width="200dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="16dp"
-        android:text="you didn't enter SBE"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyFizjologicznejZAgc" />
+        <TextView
+            android:id="@+id/textViewMetodaFizjologicznaZAgc"
+            android:layout_width="118dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="46dp"
+            android:text="Boston approach with AGc result:"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMetodaFizjologiczna" />
 
-    <TextView
-        android:id="@+id/textViewWynikMetodyFizjologicznejZAgc"
-        android:layout_width="200dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        android:text="you didn't enter Alb"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyFizjologicznej" />
+        <TextView
+            android:id="@+id/textViewMetodaBaseExcess"
+            android:layout_width="118dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="50dp"
+            android:text="Copenhagen approach result:"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMetodaFizjologicznaZAgc" />
 
-    <TextView
-        android:id="@+id/textViewMetodaBaseExcessZAgc"
-        android:layout_width="130dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="56dp"
-        android:text="Copenhagen approach with AGc result:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMetodaBaseExcess" />
+        <TextView
+            android:id="@+id/textViewWynikMetodyBaseExcess"
+            android:layout_width="200dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="12dp"
+            android:text="       you didn't enter SBE"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyFizjologicznejZAgc" />
 
-    <TextView
-        android:id="@+id/textViewWynikMetodyBaseExcess2"
-        android:layout_width="200dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="16dp"
-        android:text="you didn't enter Alb"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyBaseExcess" />
+        <TextView
+            android:id="@+id/textViewWynikMetodyFizjologicznejZAgc"
+            android:layout_width="200dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            android:text="       you didn't enter Alb"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyFizjologicznej" />
 
-    <TextView
-        android:id="@+id/textViewWynikMetodyFizjologicznej"
-        android:layout_width="200dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="16dp"
-        android:text="you didn't enter HCO3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewZgodnoscWynikow" />
+        <TextView
+            android:id="@+id/textViewMetodaBaseExcessZAgc"
+            android:layout_width="118dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="57dp"
+            android:text="Copenhagen approach with AGc result:"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMetodaBaseExcess" />
+
+        <TextView
+            android:id="@+id/textViewWynikMetodyBaseExcess2"
+            android:layout_width="200dp"
+            android:layout_height="85dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="12dp"
+            android:text="        you didn't enter Alb"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewWynikMetodyBaseExcess" />
+
+        <TextView
+            android:id="@+id/textViewWynikMetodyFizjologicznej"
+            android:layout_width="197dp"
+            android:layout_height="84dp"
+            android:layout_marginEnd="12dp"
+            android:text="       you didn't enter HCO3"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/buttonWrocDoMenu"

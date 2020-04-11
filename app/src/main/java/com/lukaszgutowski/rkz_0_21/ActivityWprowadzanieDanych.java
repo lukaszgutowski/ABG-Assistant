@@ -1,6 +1,7 @@
 package com.lukaszgutowski.rkz_0_21;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -2643,6 +2644,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wprowadzanie_danych);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Button buttonMenu = (Button) findViewById(R.id.buttonMenu);
         buttonMenu.setOnClickListener(new View.OnClickListener() {
