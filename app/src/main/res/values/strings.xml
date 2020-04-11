@@ -4,8 +4,8 @@
     If you do not enter Albumine value, you will not be able to get results from the Boston approach with corrected AG nor the Copenhagen approach with corrected AG.
     \n \t Remember that this application works based only on laboratory results.
      It has many limitations: reference values are characteristic for specific groups and laboratories, all abg diagnosing equations are being questioned, and so on.
-    \n \t You should always take into account medical history and patients' state.
-                                </string>
+    \n \t You should always take into account medical history and patients state.
+    </string>
 
 
 </resources>
