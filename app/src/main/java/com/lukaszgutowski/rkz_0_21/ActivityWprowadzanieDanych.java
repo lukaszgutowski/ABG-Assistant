@@ -434,66 +434,71 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         if (paco2 < 36) {
             //zasadowica oddechowa, teraz sprawdzam kompensację
 
-            if (hco3 < 0.95 * szacowaneHco3ZasOddOstra) {
-                //System.out.println("zasadowica oddechowa i kwasica metaboliczna");
+                if (hco3 < 0.95 * szacowaneHco3ZasOddPrzewlB) {
+                    //System.out.println("zasadowica oddechowa i kwasica metaboliczna");
 
-                if (agc <= 11) {
-                    return "respiratory alkalosis and normal anion gap metabolic acidosis";
-                    //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
-                } else {
-                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
-
-                    if (agcGapGapRatio < 0.8) {
-                        return "respiratory alkalosis and high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
-                    } else if (agcGapGapRatio >= 0.8 && agcGapGapRatio <= 1.2) {
-                        return "respiratory alkalosis and high anion gap metabolic acidosis";
-                    } else if (agcGapGapRatio > 1.2 && agcGapGapRatio <= 2) {
-                        return "respiratory alkalosis and high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                    if (agc <= 11) {
+                        return "respiratory alkalosis and normal anion gap metabolic acidosis";
+                        //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
                     } else {
-                        return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
-                    }
-                }
-            }
+                        //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
 
-            else if (hco3 >= (0.95 * szacowaneHco3ZasOddOstra) && hco3 < (0.99 * szacowaneHco3ZasOddOstra)) {
-                //System.out.println("zasadowica oddechowa i prawdopodobnie kwasica metaboliczna");
-
-                if (agc <= 11) {
-                    return "respiratory alkalosis , probably with normal anion gap metabolic acidosis";
-                    //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
-                } else {
-                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
-
-                    if (agcGapGapRatio < 0.8) {
-                        return "respiratory alkalosis, probably with high anion gap metabolic acidosis , possible additional Normal anion gap metabolic acidosis";
-                    } else if (agcGapGapRatio >= 0.8 && agcGapGapRatio <= 1.2) {
-                        return "respiratory alkalosis, probably with high anion gap metabolic acidosis";
-                    } else if (agcGapGapRatio > 1.2 && agcGapGapRatio <= 2) {
-                        return "respiratory alkalosis, probably with high anion gap metabolic acidosis, possible additional metabolic alkalosis";
-                    } else {
-                        return "respiratory alkalosis, probably with high anion gap metabolic acidosis and metabolic alkalosis";
+                        if (agcGapGapRatio < 0.8) {
+                            return "respiratory alkalosis and high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
+                        } else if (agcGapGapRatio >= 0.8 && agcGapGapRatio <= 1.2) {
+                            return "respiratory alkalosis and high anion gap metabolic acidosis";
+                        } else if (agcGapGapRatio > 1.2 && agcGapGapRatio <= 2) {
+                            return "respiratory alkalosis and high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                        } else {
+                            return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                        }
                     }
                 }
 
+                else if (hco3 >= (0.95 * szacowaneHco3ZasOddPrzewlB) && hco3 < szacowaneHco3ZasOddPrzewlB ) {
+                    //System.out.println("zasadowica oddechowa i prawdopodobnie kwasica metaboliczna");
 
+                    if (agc <= 11) {
+                        return "respiratory alkalosis , probably with normal anion gap metabolic acidosis";
+                        //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
+                    } else {
+                        //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+
+                        if (agcGapGapRatio < 0.8) {
+                            return "respiratory alkalosis, probably with high anion gap metabolic acidosis , possible additional Normal anion gap metabolic acidosis";
+                        } else if (agcGapGapRatio >= 0.8 && agcGapGapRatio <= 1.2) {
+                            return "respiratory alkalosis, probably with high anion gap metabolic acidosis";
+                        } else if (agcGapGapRatio > 1.2 && agcGapGapRatio <= 2) {
+                            return "respiratory alkalosis, probably with high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                        } else {
+                            return "respiratory alkalosis, probably with high anion gap metabolic acidosis and metabolic alkalosis";
+                        }
+                    }
+
+
+                }
+
+                else if (hco3 >= szacowaneHco3ZasOddPrzewlB && hco3 <= szacowaneHco3ZasOddPrzewlA) {
+                    //System.out.println("przewlekła kwasica oddechowa");
+                    return "chronic respiratory alkalosis";
+                }
+
+                else if (hco3 > (szacowaneHco3ZasOddPrzewlA) && hco3 < 0.99 * szacowaneHco3ZasOddOstra) {
+                    //System.out.println("kwasica oddechowa");
+                    return "partially compensated respiratory alkalosis";
+                }
+
+                else if (hco3 >= (0.99 * szacowaneHco3ZasOddOstra) && hco3 <= (1.01 * szacowaneHco3ZasOddOstra)) {
+                    //System.out.println("ostra kwasica oddechowa");
+                    return "acute respiratory alkalosis";
+                } else if (hco3 > (1.01 * szacowaneHco3ZasOddOstra) && hco3 <= (1.05 * szacowaneHco3ZasOddOstra)) {
+                    //System.out.println("przewlekła kwasica oddechowa + zas met");
+                    return "respiratory alkalosis, probably with metabolic alkalosis";
+                } else {
+                    // that is when hco3 > 1.05 * szacowaneHco3ZasOddOstra
+                    return "respiratory alkalosis and metabolic alkalosis";
+                }
             }
-            else if (hco3 >= (0.99 * szacowaneHco3ZasOddOstra) && hco3 <= (1.01 * szacowaneHco3ZasOddOstra)) {
-                //System.out.println("ostra zasadowica oddechowa");
-                return "acute respiratory alkalosis";
-            } else if (hco3 > (1.01 * szacowaneHco3ZasOddOstra) && hco3 < szacowaneHco3ZasOddPrzewlA) {
-                //System.out.println("zasadowica oddechowa");
-                return "partially compensated respiratory alkalosis";
-            } else if (hco3 >= szacowaneHco3ZasOddPrzewlA && hco3 <= szacowaneHco3ZasOddPrzewlB) {
-                //System.out.println("przewlekła zasadowica oddechowa");
-                return "chronic respiratory alkalosis";
-            } else if (hco3 > szacowaneHco3ZasOddPrzewlB && hco3 <= (1.05 * szacowaneHco3ZasOddPrzewlB)) {
-                //System.out.println(" zasadowica oddechowa + prawd zas met");
-                return "respiratory alkalosis, probably with metabolic alkalosis";
-            } else {
-                // that is when hco3 > 1,05* szacowaneHco3ZasOddPrzewlB
-                return "respiratory alkalosis and metabolic alkalosis";
-            }
-        }
 
 
 
@@ -1076,7 +1081,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         if (paco2 < 36) {
             //zasadowica oddechowa, teraz sprawdzam kompensację
 
-            if (hco3 < 0.95 * szacowaneHco3ZasOddOstra) {
+            if (hco3 < 0.95 * szacowaneHco3ZasOddPrzewlB) {
                 //System.out.println("zasadowica oddechowa i kwasica metaboliczna");
 
                 if (ag <= 11) {
@@ -1097,7 +1102,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 }
             }
 
-            else if (hco3 >= (0.95 * szacowaneHco3ZasOddOstra) && hco3 < (0.99 * szacowaneHco3ZasOddOstra)) {
+            else if (hco3 >= (0.95 * szacowaneHco3ZasOddPrzewlB) && hco3 < szacowaneHco3ZasOddPrzewlB ) {
                 //System.out.println("zasadowica oddechowa i prawdopodobnie kwasica metaboliczna");
 
                 if (ag <= 11) {
@@ -1120,20 +1125,24 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
             }
 
+            else if (hco3 >= szacowaneHco3ZasOddPrzewlB && hco3 <= szacowaneHco3ZasOddPrzewlA) {
+                //System.out.println("przewlekła kwasica oddechowa");
+                return "chronic respiratory alkalosis";
+            }
+
+            else if (hco3 > (szacowaneHco3ZasOddPrzewlA) && hco3 < 0.99 * szacowaneHco3ZasOddOstra) {
+                //System.out.println("kwasica oddechowa");
+                return "partially compensated respiratory alkalosis";
+            }
+
             else if (hco3 >= (0.99 * szacowaneHco3ZasOddOstra) && hco3 <= (1.01 * szacowaneHco3ZasOddOstra)) {
                 //System.out.println("ostra kwasica oddechowa");
                 return "acute respiratory alkalosis";
-            } else if (hco3 > (1.01 * szacowaneHco3ZasOddOstra) && hco3 < szacowaneHco3ZasOddPrzewlA) {
-                //System.out.println("kwasica oddechowa");
-                return "partially compensated respiratory alkalosis";
-            } else if (hco3 >= szacowaneHco3ZasOddPrzewlA && hco3 <= szacowaneHco3ZasOddPrzewlB) {
-                //System.out.println("przewlekła kwasica oddechowa");
-                return "chronic respiratory alkalosis";
-            } else if (hco3 > szacowaneHco3ZasOddPrzewlB && hco3 <= (1.05 * szacowaneHco3ZasOddPrzewlB)) {
+            } else if (hco3 > (1.01 * szacowaneHco3ZasOddOstra) && hco3 <= (1.05 * szacowaneHco3ZasOddOstra)) {
                 //System.out.println("przewlekła kwasica oddechowa + zas met");
                 return "respiratory alkalosis, probably with metabolic alkalosis";
             } else {
-                // that is when hco3 > szacowaneHco3ZasOddPrzewlB
+                // that is when hco3 > 1.05 * szacowaneHco3ZasOddOstra
                 return "respiratory alkalosis and metabolic alkalosis";
             }
         }
@@ -1711,7 +1720,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         if (paco2 < 36) {
             //zasadowica oddechowa, teraz sprawdzam kompensację
 
-            if (sbe < -2.1) {
+            if (sbe < (0.4*(paco2 - 40)) - (0.05 * Math.abs(0.4 * (paco2 - 40)) )  ) {
                 //System.out.println("zasadowica oddechowa i kwasica metaboliczna");
 
                 if (ag <= 11) {
@@ -1732,17 +1741,16 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 }
             }
 
-            else if (sbe >= -2.1 && sbe < -2) {
-                //System.out.println("zasadowica oddechowa i prawdopodobnie kwasica metaboliczna");
-
+            else if (sbe >= (0.4*(paco2 - 40)) - (0.05 * Math.abs(0.4 * (paco2 - 40)))     &&    sbe < (0.4*(paco2 - 40)) - (0.01 * Math.abs(0.4 * (paco2 - 40)) ) ) {
+                //System.out.println("zas odd + prawd kw met");
                 if (ag <= 11) {
-                    return "respiratory alkalosis , probably with normal anion gap metabolic acidosis";
-                    //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
+                   return "respiratory alkalosis , probably with normal anion gap metabolic acidosis";
+                   //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
                 } else {
                     //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
 
-                    if (sbeGapGapRatio < 0.8) {
-                        return "respiratory alkalosis, probably with high anion gap metabolic acidosis , possible additional Normal anion gap metabolic acidosis";
+                  if (sbeGapGapRatio < 0.8) {
+                       return "respiratory alkalosis, probably with high anion gap metabolic acidosis , possible additional Normal anion gap metabolic acidosis";
                     } else if (sbeGapGapRatio >= 0.8 && sbeGapGapRatio <= 1.2) {
                         return "respiratory alkalosis, probably with high anion gap metabolic acidosis";
                     } else if (sbeGapGapRatio > 1.2 && sbeGapGapRatio <= 2) {
@@ -1752,8 +1760,22 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     }
                 }
 
+            }
+
+
+            else if ( sbe >= (0.4*(paco2 - 40)) - (0.01 * Math.abs(0.4 * (paco2 - 40)))     &&       sbe <= (0.4*(paco2 - 40)) + (0.01 * Math.abs(0.4 * (paco2 - 40)))  ) {
+                //System.out.println("przewlekła zasadowica oddechowa");
+                return "chronic respiratory alkalosis";
 
             }
+
+
+            else if ( sbe > (0.4*(paco2 - 40)) + (0.01 * Math.abs(0.4 * (paco2 - 40)))  && sbe < -2  ) {
+                //System.out.println("zasadowica oddechowa");
+                return "partially compensated respiratory alkalosis";
+
+            }
+
 
             else if (sbe >= -2 && sbe <= 2) {
                 //System.out.println("ostra zasadowica oddechowa");
@@ -1761,23 +1783,22 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
             }
 
-            else if ( sbe > 2 && sbe < (0.4*(paco2 - 40)) - (0.01 * Math.abs(0.4 * (paco2 - 40)))  ) {
-                //System.out.println("zasadowica oddechowa");
-                return "partially compensated respiratory alkalosis";
-
-            } else if ( sbe >= (0.4*(paco2 - 40)) - (0.01 * Math.abs(0.4 * (paco2 - 40)))     &&       sbe <= (0.4*(paco2 - 40)) + (0.01 * Math.abs(0.4 * (paco2 - 40)))  ) {
-                //System.out.println("przewlekła zasadowica oddechowa");
-                return "chronic respiratory alkalosis";
-
-            } else if (sbe > (0.4*(paco2 - 40)) + (0.01 * Math.abs(0.4 * (paco2 - 40)))     &&    sbe <= (0.4*(paco2 - 40)) + (0.05 * Math.abs(0.4 * (paco2 - 40)))  ) {
-                //System.out.println("zas odd + prawd zas met");
+            else if (sbe > 2 && sbe <= 2.1) {
+                //System.out.println("ostra zasadowica oddechowa");
                 return "respiratory alkalosis, probably with metabolic alkalosis";
 
-            } else {
-                // that is when hco3 > szacowaneHco3ZasOddPrzewlB
+            }
+
+             else {
+                // that is when sbe > 2,1
                 return "respiratory alkalosis and metabolic alkalosis";
             }
         }
+
+
+
+
+
 
 
 
@@ -2046,19 +2067,19 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         }
 
         else if(ph < 7.36){
-            return kwasicaAgc (hco3, sbe, paco2, agc);
+            return kwasicaSbeAgc (hco3, sbe, paco2, agc);
 
         }
         else if(ph > 7.44){
-            return zasadowicaAgc (hco3, sbe, paco2, agc);
+            return zasadowicaSbeAgc (hco3, sbe, paco2, agc);
         }
 
         else if(ph >= 7.36 && ph < 7.4){
-            return normatywne1Agc (hco3, sbe, paco2, agc);
+            return normatywne1SbeAgc (hco3, sbe, paco2, agc);
         }
 
         else{
-            return normatywne2Agc (hco3, sbe, paco2, agc);
+            return normatywne2SbeAgc (hco3, sbe, paco2, agc);
         }
 
     }
@@ -2077,7 +2098,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
 
 
-    static String kwasicaAgc (double hco3, double sbe, double paco2, double agc){
+    static String kwasicaSbeAgc (double hco3, double sbe, double paco2, double agc){
         double sbeAgcGapGapRatio = dajSbeAgcGapGapRatio(agc, hco3);
 
 
@@ -2349,13 +2370,14 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
     }
 
-    static String zasadowicaAgc (double hco3, double sbe, double paco2, double agc) {
+    static String zasadowicaSbeAgc (double hco3, double sbe, double paco2, double agc) {
         double sbeAgcGapGapRatio = dajSbeAgcGapGapRatio(agc, hco3);
 
         if (paco2 < 36) {
             //zasadowica oddechowa, teraz sprawdzam kompensację
 
-            if (sbe < -2.1) {
+
+            if (sbe < (0.4*(paco2 - 40)) - (0.05 * Math.abs(0.4 * (paco2 - 40)) )  ) {
                 //System.out.println("zasadowica oddechowa i kwasica metaboliczna");
 
                 if (agc <= 11) {
@@ -2376,9 +2398,8 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 }
             }
 
-            else if (sbe >= -2.1 && sbe < -2) {
-                //System.out.println("zasadowica oddechowa i prawdopodobnie kwasica metaboliczna");
-
+            else if (sbe >= (0.4*(paco2 - 40)) - (0.05 * Math.abs(0.4 * (paco2 - 40)))     &&    sbe < (0.4*(paco2 - 40)) - (0.01 * Math.abs(0.4 * (paco2 - 40)) ) ) {
+                //System.out.println("zas odd + prawd kw met");
                 if (agc <= 11) {
                     return "respiratory alkalosis , probably with normal anion gap metabolic acidosis";
                     //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
@@ -2396,8 +2417,22 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     }
                 }
 
+            }
+
+
+            else if ( sbe >= (0.4*(paco2 - 40)) - (0.01 * Math.abs(0.4 * (paco2 - 40)))     &&       sbe <= (0.4*(paco2 - 40)) + (0.01 * Math.abs(0.4 * (paco2 - 40)))  ) {
+                //System.out.println("przewlekła zasadowica oddechowa");
+                return "chronic respiratory alkalosis";
 
             }
+
+
+            else if ( sbe > (0.4*(paco2 - 40)) + (0.01 * Math.abs(0.4 * (paco2 - 40)))  && sbe < -2  ) {
+                //System.out.println("zasadowica oddechowa");
+                return "partially compensated respiratory alkalosis";
+
+            }
+
 
             else if (sbe >= -2 && sbe <= 2) {
                 //System.out.println("ostra zasadowica oddechowa");
@@ -2405,23 +2440,18 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
             }
 
-            else if ( sbe > 2 && sbe < (0.4*(paco2 - 40)) - (0.01 * Math.abs(0.4 * (paco2 - 40)))  ) {
-                //System.out.println("zasadowica oddechowa");
-                return "partially compensated respiratory alkalosis";
-
-            } else if ( sbe >= (0.4*(paco2 - 40)) - (0.01 * Math.abs(0.4 * (paco2 - 40)))     &&       sbe <= (0.4*(paco2 - 40)) + (0.01 * Math.abs(0.4 * (paco2 - 40)))  ) {
-                //System.out.println("przewlekła zasadowica oddechowa");
-                return "chronic respiratory alkalosis";
-
-            } else if (sbe > (0.4*(paco2 - 40)) + (0.01 * Math.abs(0.4 * (paco2 - 40)))     &&    sbe <= (0.4*(paco2 - 40)) + (0.05 * Math.abs(0.4 * (paco2 - 40)))  ) {
-                //System.out.println("zas odd + prawd zas met");
+            else if (sbe > 2 && sbe <= 2.1) {
+                //System.out.println("ostra zasadowica oddechowa");
                 return "respiratory alkalosis, probably with metabolic alkalosis";
 
-            } else {
-                // that is when hco3 > szacowaneHco3ZasOddPrzewlB
+            }
+
+            else {
+                // that is when sbe > 2,1
                 return "respiratory alkalosis and metabolic alkalosis";
             }
         }
+
 
 
 
@@ -2455,7 +2485,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         }
     }
 
-    static String normatywne1Agc (double hco3, double sbe, double paco2, double agc) {
+    static String normatywne1SbeAgc (double hco3, double sbe, double paco2, double agc) {
         double sbeAgcGapGapRatio = dajSbeAgcGapGapRatio(agc, hco3);
 
         if (paco2 < 36){
@@ -2538,7 +2568,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
     }
 
 
-    static String normatywne2Agc (double hco3, double sbe, double paco2, double agc) {
+    static String normatywne2SbeAgc (double hco3, double sbe, double paco2, double agc) {
         //czyli pH >=7.4 && <= 7.44
         double sbeAgcGapGapRatio = dajSbeAgcGapGapRatio(agc, hco3);
 
