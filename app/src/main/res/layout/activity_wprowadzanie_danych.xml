@@ -7,8 +7,8 @@
     tools:context=".ActivityWprowadzanieDanych">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="358dp"
+        android:layout_height="368dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonDiagnoza"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +19,7 @@
             android:id="@+id/editTextPh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:ems="10"
             android:hint="enter pH"
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="33dp"
             android:layout_marginEnd="10dp"
             android:text="HCO3-"
             android:textSize="19sp"
@@ -42,6 +42,19 @@
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewPaco2" />
+
+        <TextView
+            android:id="@+id/textViewSbe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="33dp"
+            android:text="SBE"
+            android:textSize="19sp"
+            app:layout_constraintEnd_toStartOf="@+id/editTextSbe"
+            app:layout_constraintHorizontal_bias="0.071"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewHco3" />
 
         <EditText
             android:id="@+id/editTextPaco2"
@@ -69,7 +82,7 @@
             android:text=""
             android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextHco3" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextSbe" />
 
         <EditText
             android:id="@+id/editTextAlb"
@@ -99,6 +112,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextPaco2" />
 
+        <EditText
+            android:id="@+id/editTextSbe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="10dp"
+            android:ems="10"
+            android:hint="enter SBE"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextHco3" />
+
         <TextView
             android:id="@+id/textViewAg"
             android:layout_width="wrap_content"
@@ -109,16 +136,16 @@
             android:text="Anion Gap"
             android:textSize="19sp"
             app:layout_constraintEnd_toStartOf="@+id/editTextAg"
-            app:layout_constraintHorizontal_bias="0.103"
+            app:layout_constraintHorizontal_bias="0.15"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewHco3" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSbe" />
 
         <TextView
             android:id="@+id/textViewAlb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="33dp"
             android:layout_marginEnd="10dp"
             android:text="Albumin"
             android:textSize="19sp"
@@ -132,12 +159,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="23dp"
             android:layout_marginEnd="10dp"
             android:text="pH"
             android:textSize="19sp"
             app:layout_constraintEnd_toStartOf="@+id/editTextPh"
-            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintHorizontal_bias="0.072"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
