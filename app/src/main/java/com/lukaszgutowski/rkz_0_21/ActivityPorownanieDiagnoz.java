@@ -62,14 +62,16 @@ public class ActivityPorownanieDiagnoz extends AppCompatActivity {
         String UzyskanyWynikBaseExcess = getIntent().getStringExtra("3");
         if (UzyskanyWynikBaseExcess == null || UzyskanyWynikBaseExcess == "")
         {
-            UzyskanyWynikBaseExcess = "you didn't enter SBE";
+            UzyskanyWynikBaseExcess = "You didn't enter SBE";
         };
 
         String UzyskanyWynikBaseExcessAgc = getIntent().getStringExtra("4");
         if (UzyskanyWynikBaseExcessAgc == null || UzyskanyWynikBaseExcessAgc == "")
         {
-            UzyskanyWynikBaseExcessAgc = "you didn't enter SBE";
+            UzyskanyWynikBaseExcessAgc = "You didn't enter Alb";
         };
+
+        String deltaph = getIntent().getStringExtra("X");
 
 
 
@@ -98,8 +100,8 @@ public class ActivityPorownanieDiagnoz extends AppCompatActivity {
 
 
 
-        Toast.makeText(ActivityPorownanieDiagnoz.this, "calculating finished successfully", Toast.LENGTH_SHORT).show();
-        //Toast.makeText(ActivityPorownanieDiagnoz.this, Imie, Toast.LENGTH_SHORT).show();
+        Toast.makeText(ActivityPorownanieDiagnoz.this, deltaph, Toast.LENGTH_LONG).show();
+
 
         TextView textViewZgodnoscWynikow = findViewById(R.id.textViewZgodnoscWynikow);
 

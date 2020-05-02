@@ -16,8 +16,14 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         return 0.9287 * (hco3 - 24.4 + 14.83 * (ph - 7.4));
     }
 
-    static double deltaph  (double hco3, double paco2, double ph){
-        return Math.abs(ph - ( 6.1 + Math.log10( hco3 / (0.03 * paco2))));
+    static String deltaph  (double hco3, double paco2, double ph){
+        double wyliczaneph = 6.1 + Math.log10( hco3 / (0.03 * paco2));
+        if ( ph > wyliczaneph + 0.02 || ph < wyliczaneph - 0.02){
+            return "The entered data might be incorrect. Henderson–Hasselbalch equation is not fulfilled.";
+        }
+        else{
+            return "calculating finished successfully";
+        }
     }
 
     static double dajSzacowaneHco3KwOddOstra ( double paco2) {
@@ -2678,6 +2684,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     intentPrzejdzDoDiagnoz1.putExtra("2", metodaNadrzednaAgc(ph, paco2, hco3, agc ));
                     intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag ));
                     intentPrzejdzDoDiagnoz1.putExtra("4", metodaNadrzednaSbeAgc(ph, sbe, paco2, hco3, agc ));
+                    intentPrzejdzDoDiagnoz1.putExtra("X", deltaph(hco3, paco2, ph));
 
                     startActivity(intentPrzejdzDoDiagnoz1);
 
@@ -2701,7 +2708,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     intentPrzejdzDoDiagnoz1.putExtra("2", metodaNadrzednaAgc(ph, paco2, hco3, agc ));
                     intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag ));
                     intentPrzejdzDoDiagnoz1.putExtra("4", metodaNadrzednaSbeAgc(ph, sbe, paco2, hco3, agc ));
-
+                    intentPrzejdzDoDiagnoz1.putExtra("X", deltaph(hco3, paco2, ph));
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }
@@ -2721,6 +2728,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
                     intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
                     intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag ));
+                    intentPrzejdzDoDiagnoz1.putExtra("X", deltaph(hco3, paco2, ph));
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }
@@ -2739,6 +2747,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);
                     intentPrzejdzDoDiagnoz1.putExtra("1", metodaNadrzedna(ph, paco2, hco3, ag ));
                     intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag ));
+                    intentPrzejdzDoDiagnoz1.putExtra("X", deltaph(hco3, paco2, ph));
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }
