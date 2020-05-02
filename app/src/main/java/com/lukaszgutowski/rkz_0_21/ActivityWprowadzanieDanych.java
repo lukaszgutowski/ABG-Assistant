@@ -16,7 +16,9 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         return 0.9287 * (hco3 - 24.4 + 14.83 * (ph - 7.4));
     }
 
-
+    static double deltaph  (double hco3, double paco2, double ph){
+        return Math.abs(ph - ( 6.1 + Math.log10( hco3 / (0.03 * paco2))));
+    }
 
     static double dajSzacowaneHco3KwOddOstra ( double paco2) {
         double deltaPaco2 = paco2 - 40;
@@ -101,7 +103,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
         }
 
-        else if  (ph < ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) - 0.015 || ph > ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) + 0.015 ) {
+        else if  (ph < ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) - 0.1 || ph > ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) + 0.1 ) {
             return "Incorrect data. Henderson–Hasselbalch equation is not fulfilled.";
         }
 
@@ -155,7 +157,15 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
         if ( paco2 <= 44){
 
-            if ( hco3 < 22 ){
+            if (paco2 >= 43 && hco3 >=22 && hco3 <= 24){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (paco2 >= 41 && paco2 <43 && hco3 >=22 && hco3 < 23){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if ( hco3 < 22 ){
 
 
                 if (paco2 < 0.95 *(przewidywanePaco2 -2) ){
@@ -311,9 +321,8 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             }
             else {
                 // czyli hco3 >= 22          wszystkie powyżej 25 równanie HH wyrzuca jako błąd niezgodny z równaniem
-                //gdy zgodne z HH: kwasica oddechowa (możliwe dla max paco2 44 i hco3 24 w teroeii, w programie hco3 25 teżB przejdzei ze względu na +/- 0.02)
 
-                return "Make sure that entered data are correct; consider presence of respiratory acidosis.";
+                return "Error. The entered data are incorrect.";
 
             }
 
@@ -504,8 +513,17 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
 
         else {   // czyli paCO2 >=36
-            if (hco3 <= 26) {
-                return "Make sure that entered data are correct; consider presence of respiratory and metabolic alkalosis.";
+            //wyjątki
+            if (paco2 <= 37 && hco3 >= 23.7 && hco3 < 26){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            if (paco2 >37 && paco2 <= 39 && hco3 >= 25 && hco3 < 26){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (hco3 <= 26) {
+                return "Error. The entered data are incorrect.";
 
 
 
@@ -536,30 +554,49 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         double agcGapGapRatio = dajAgcGapGapRatio(agc, hco3);
 
         if (paco2 < 36){
-            //zas odd i kw met
 
-            if (agc <= 11) {
-                return "respiratory alkalosis and normal anion gap metabolic acidosis";
-                //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
-            } else {
-                //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+            if (hco3 < 22) {
+                //zas odd i kw met
 
-                if (agcGapGapRatio < 0.8) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
-                } else if (agcGapGapRatio >= 0.8 && agcGapGapRatio <= 1.2) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis";
-                } else if (agcGapGapRatio > 1.2 && agcGapGapRatio <= 2) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                if (agc <= 11) {
+                    return "respiratory alkalosis and normal anion gap metabolic acidosis";
+                    //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
                 } else {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+
+                    if (agcGapGapRatio < 0.8) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
+                    } else if (agcGapGapRatio >= 0.8 && agcGapGapRatio <= 1.2) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis";
+                    } else if (agcGapGapRatio > 1.2 && agcGapGapRatio <= 2) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                    } else {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
                 }
+            }
+            else {
+                //if (hco3 >= 22)//
+                return"Error. The entered data are incorrect.";
             }
 
         }
 
         else if (paco2 >= 36 && paco2 <= 44){
 
-            if (hco3 >= 22 && hco3 <= 26){
+            if (paco2 <= 37 && hco3 >= 19.7 && hco3 < 22){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (paco2 > 37 && paco2 <= 39 && hco3 >= 20.8 && hco3 < 22){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (paco2 > 43.99 && hco3 >26 && hco3 <= 26.3){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (hco3 >= 22 && hco3 <= 26){
 
                 if (agc <= 11) {
                     return "correct results";
@@ -570,7 +607,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     if (agcGapGapRatio < 0.8) {
                         return "high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
                     } else if (agcGapGapRatio >= 0.8 && agcGapGapRatio <= 1.2) {
-                        return "possible high anion gap metabolic acidosis";
+                        return "high anion gap metabolic acidosis";
                     } else if (agcGapGapRatio > 1.2 && agcGapGapRatio <= 2) {
                         return "high anion gap metabolic acidosis, possible additional metabolic alkalosis";
                     } else {
@@ -580,35 +617,23 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             }
 
             else {  //hco3 != <22-26>
-                if (agc <= 11) {
-                    return "Make sure that entered data are correct; check electrolytes concentration to exclude existence acid-base disturbances.";
-
-                } else {
-                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
-
-                    if (agcGapGapRatio < 0.8) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis.";
-                    } else if (agcGapGapRatio >= 0.8 && agcGapGapRatio <= 1.2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis";
-                    } else if (agcGapGapRatio > 1.2 && agcGapGapRatio <= 2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis, possible additional metabolic alkalosis.";
-                    } else {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis and gap metabolic alkalosis.";
-                    }
-                }
-
+                return "Error. The entered data are incorrect.";
             }
         }
 
         else {       //czyli paco2 >44
 
-            if (hco3 > 26){
+            if (paco2 > 44 && paco2 <=46 && hco3 >=24.6 && hco3 <=26){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (hco3 > 26){
                 return "respiratory acidosis and metabolic alkalosis";
             }
 
-            else {
-                return "Make sure that entered data are correct; consider presence of respiratory acidosis and metabolic alkalosis.";
 
+            else {
+                return "Error. The entered data are incorrect.";
 
             }
         }
@@ -619,36 +644,54 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         double agcGapGapRatio = dajAgcGapGapRatio(agc, hco3);
 
         if (paco2 < 36){
-            //zas odd i kw met
 
+            if (paco2 >= 35 && hco3 > 22 && hco3 <=22.9){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
 
-            if (agc <= 11) {
-                return "respiratory alkalosis and normal anion gap metabolic acidosis";
-                //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
-            } else {
-                //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+            else if (hco3 < 22) {  //zas odd i kw met
 
-                if (agcGapGapRatio < 0.8) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
-                } else if (agcGapGapRatio >= 0.8 && agcGapGapRatio <= 1.2) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis";
-                } else if (agcGapGapRatio > 1.2 && agcGapGapRatio <= 2) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                if (agc <= 11) {
+                    return "respiratory alkalosis and normal anion gap metabolic acidosis";
+                    //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
                 } else {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+
+                    if (agcGapGapRatio < 0.8) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
+                    } else if (agcGapGapRatio >= 0.8 && agcGapGapRatio <= 1.2) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis";
+                    } else if (agcGapGapRatio > 1.2 && agcGapGapRatio <= 2) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                    } else {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
                 }
             }
-            //pozostałe warianty HCO3 nie istnieją, są niezgodne z HH
+            else { //if (hco3 >= 22)
+                return "Error. The entered data are incorrect.";
+            }
         }
 
         else if (paco2 >= 36 && paco2 <= 44){
 
-            if (hco3 >= 22 && hco3 <= 26){
+            if (paco2 <= 36.2 && hco3 >= 21.7 && hco3 <22){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (paco2 >= 43 && hco3 > 26 && hco3 <= 28){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+            else if (paco2 >= 41 && paco2 < 43 && hco3 > 26 && hco3 <= 27.5){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (hco3 >= 22 && hco3 <= 26){
 
                 if (agc <= 11) {
                     return "correct results";
-
-                } else {
+                }
+                else {
                     //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
 
                     if (agcGapGapRatio < 0.8) {
@@ -663,55 +706,28 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 }
             }
 
-            else if (hco3 < 21) {
-                if (agc <= 11) {
-                    return "Make sure that entered data are correct; check electrolytes concentration to exclude existence acid-base disturbances.";
-                } else {
-                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
 
-                    if (agcGapGapRatio < 0.8) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis.";
-                    } else if (agcGapGapRatio >= 0.8 && agcGapGapRatio <= 1.2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis";
-                    } else if (agcGapGapRatio > 1.2 && agcGapGapRatio <= 2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis, possible additional metabolic alkalosis.";
-                    } else {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis and gap metabolic alkalosis.";
-                    }
-                }
-            }
-            else if (hco3 >= 21 && hco3 < 22){
-                if (agc <= 11) {
-                    return "correct results";
-
-                } else {
-                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
-
-                    if (agcGapGapRatio < 0.8) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis.";
-                    } else if (agcGapGapRatio >= 0.8 && agcGapGapRatio <= 1.2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis";
-                    } else if (agcGapGapRatio > 1.2 && agcGapGapRatio <= 2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis, possible additional metabolic alkalosis.";
-                    } else {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis and gap metabolic alkalosis.";
-                    }
-                }
-
-            }
-
-            else {  //hco3 >26>
-                return "Make sure that entered data are correct; consider presence of metabolic alkalosis and respiratory acidosis.";
+            else {  //hco3 != 22-26
+                return "Error. The entered data are incorrect.";
 
             }
         }
+
 
         else {       //czyli paco2 >44
 
-            return "respiratory acidosis and metabolic alkalosis";
 
+          if (hco3 > 26) {
+              return "respiratory acidosis and metabolic alkalosis";
+          }
+          else {  //hco3 <= 26
+              return "Error. The entered data are incorrect.";
+          }
         }
+
     }
+
+
 
 
 
@@ -751,7 +767,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
         }
 
-        else if  (ph < ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) - 0.015 || ph > ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) + 0.015 ) {
+        else if  (ph < ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) - 0.1 || ph > ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) + 0.1 ) {
             return "Incorrect data. Henderson–Hasselbalch equation is not fulfilled.";
         }
 
@@ -801,7 +817,15 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
         if ( paco2 <= 44){
 
-            if ( hco3 < 22 ){
+            if (paco2 >= 43 && hco3 >=22 && hco3 <= 24){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (paco2 >= 41 && paco2 <43 && hco3 >=22 && hco3 < 23){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if ( hco3 < 22 ){
 
 
                 if (paco2 < 0.95 *(przewidywanePaco2 -2) ){
@@ -956,10 +980,9 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
             }
             else {
-                // czyli hco3 >= 22          wszystkie powyżej 25 równanie HH wyrzuca jako błąd niezgodny z równaniem
-                //gdy zgodne z HH: kwasica oddechowa (możliwe dla max paco2 44 i hco3 24 w teroeii, w programie hco3 25 też przejdzei ze względu na +/- 0.015)
+                // czyli hco3 >= 22
 
-                return "Make sure that entered data are correct; consider presence of respiratory acidosis.";
+                return "Error. The entered data are incorrect.";
 
             }
 
@@ -974,97 +997,96 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             // nie ma sensu sprawdzać HCO3 - bo poniżej 22 i tak jest zaburzenie mieszane,
 
 
-                //tutaj sprwdzam oczekiwane paCO2 i porównuję z wpisanym
+            //tutaj sprwdzam oczekiwane paCO2 i porównuję z wpisanym
 
 
-                if  (hco3 < 0.95 * szacowaneHco3KwOddOstra) {
+            if  (hco3 < 0.95 * szacowaneHco3KwOddOstra) {
 
-                    //return "kwasica oddechowa i kwasica metaboliczna";
+                //return "kwasica oddechowa i kwasica metaboliczna";
 
-                    if (ag <= 11){
-                        return "respiratory acidosis and normal anion gap metabolic acidosis";
-                        //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
-                    }
-
-                    else {
-                        //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
-
-                        if (gapGapRatio < 0.8){
-                            return "respiratory acidosis and high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
-                        }
-
-                        else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2){
-                            return "respiratory acidosis and high anion gap metabolic acidosis";
-                        }
-
-                        else if (gapGapRatio > 1.2 && gapGapRatio <= 2){
-                            return "respiratory acidosis and high anion gap metabolic acidosis, possible additional metabolic alkalosis";
-                        }
-
-                        else {
-                            return "respiratory acidosis and high anion gap metabolic acidosis and metabolic alkalosis";
-                        }
-                    }
-
-
-                }
-
-                else if  (hco3 >= 0.95 * szacowaneHco3KwOddOstra && hco3 < (0.99 * szacowaneHco3KwOddOstra)) {
-
-                    //return "kwasica oddechowa i prawdoposobnie kwasica metaboliczna";
-
-                    if (ag <= 11){
-                        return "respiratory acidosis, probably with normal anion gap metabolic acidosis";
-                        //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
-                    }
-
-                    else {
-                        //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
-
-                        if (gapGapRatio < 0.8){
-                            return "respiratory acidosis, probably with high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
-                        }
-
-                        else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2){
-                            return "respiratory acidosis, probably with high anion gap metabolic acidosis";
-                        }
-
-                        else if (gapGapRatio > 1.2 && gapGapRatio <= 2){
-                            return "respiratory acidosis, probably with high anion gap metabolic acidosis, possible additional metabolic alkalosis";
-                        }
-
-                        else {
-                            return "respiratory acidosis, probably with high anion gap metabolic acidosis and metabolic alkalosis";
-                        }
-                    }
-
-
-                }
-
-                else if (hco3 >= (0.99 * szacowaneHco3KwOddOstra) && hco3 <= (1.01 * szacowaneHco3KwOddOstra)){
-                    //System.out.println("ostra kwasica oddechowa");
-                    return "acute respiratory acidosis";
-                }
-
-                else if (hco3 > (1.01 * szacowaneHco3KwOddOstra) && hco3 < szacowaneHco3KwOddPrzewlA) {
-                    //System.out.println("kwasica oddechowa");
-                    return "partially compensated respiratory acidosis";
-                }
-
-                else if (hco3 >=  szacowaneHco3KwOddPrzewlA && hco3 <= szacowaneHco3KwOddPrzewlB) {
-                    //System.out.println("przewlekła kwasica oddechowa");
-                    return "chronic respiratory acidosis";
-                }
-
-                else if (hco3 >  szacowaneHco3KwOddPrzewlB && hco3 <= (1.05 *szacowaneHco3KwOddPrzewlB)) {
-                    //System.out.println("przewlekła kwasica oddechowa i prawdopodobnie zas metaboliczna");
-                    return "respiratory acidosis, probably with metabolic alkalosis";
+                if (ag <= 11){
+                    return "respiratory acidosis and normal anion gap metabolic acidosis";
+                    //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
                 }
 
                 else {
-                    return "respiratory acidosis and metabolic alkalosis";
+                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+
+                    if (gapGapRatio < 0.8){
+                        return "respiratory acidosis and high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
+                    }
+
+                    else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2){
+                        return "respiratory acidosis and high anion gap metabolic acidosis";
+                    }
+
+                    else if (gapGapRatio > 1.2 && gapGapRatio <= 2){
+                        return "respiratory acidosis and high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                    }
+
+                    else {
+                        return "respiratory acidosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
                 }
 
+
+            }
+
+            else if  (hco3 >= 0.95 * szacowaneHco3KwOddOstra && hco3 < (0.99 * szacowaneHco3KwOddOstra)) {
+
+                //return "kwasica oddechowa i prawdoposobnie kwasica metaboliczna";
+
+                if (ag <= 11){
+                    return "respiratory acidosis, probably with normal anion gap metabolic acidosis";
+                    //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
+                }
+
+                else {
+                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+
+                    if (gapGapRatio < 0.8){
+                        return "respiratory acidosis, probably with high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
+                    }
+
+                    else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2){
+                        return "respiratory acidosis, probably with high anion gap metabolic acidosis";
+                    }
+
+                    else if (gapGapRatio > 1.2 && gapGapRatio <= 2){
+                        return "respiratory acidosis, probably with high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                    }
+
+                    else {
+                        return "respiratory acidosis, probably with high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
+                }
+
+
+            }
+
+            else if (hco3 >= (0.99 * szacowaneHco3KwOddOstra) && hco3 <= (1.01 * szacowaneHco3KwOddOstra)){
+                //System.out.println("ostra kwasica oddechowa");
+                return "acute respiratory acidosis";
+            }
+
+            else if (hco3 > (1.01 * szacowaneHco3KwOddOstra) && hco3 < szacowaneHco3KwOddPrzewlA) {
+                //System.out.println("kwasica oddechowa");
+                return "partially compensated respiratory acidosis";
+            }
+
+            else if (hco3 >=  szacowaneHco3KwOddPrzewlA && hco3 <= szacowaneHco3KwOddPrzewlB) {
+                //System.out.println("przewlekła kwasica oddechowa");
+                return "chronic respiratory acidosis";
+            }
+
+            else if (hco3 >  szacowaneHco3KwOddPrzewlB && hco3 <= (1.05 *szacowaneHco3KwOddPrzewlB)) {
+                //System.out.println("przewlekła kwasica oddechowa i prawdopodobnie zas metaboliczna");
+                return "respiratory acidosis, probably with metabolic alkalosis";
+            }
+
+            else {
+                return "respiratory acidosis and metabolic alkalosis";
+            }
 
         }
 
@@ -1151,8 +1173,17 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
 
         else {   // czyli paCO2 >=36
-            if (hco3 <= 26) {
-                return "Make sure that entered data are correct; consider presence of respiratory and metabolic alkalosis.";
+            //wyjątki
+            if (paco2 <= 37 && hco3 >= 23.7 && hco3 < 26){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            if (paco2 >37 && paco2 <= 39 && hco3 >= 25 && hco3 < 26){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (hco3 <= 26) {
+                return "Error. The entered data are incorrect.";
 
 
 
@@ -1183,6 +1214,8 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         double gapGapRatio = dajGapGapRatio(ag, hco3);
 
         if (paco2 < 36){
+
+            if (hco3 < 22) {
                 //zas odd i kw met
 
                 if (ag <= 11) {
@@ -1201,12 +1234,29 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                         return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
                     }
                 }
+            }
+            else {
+                //if (hco3 >= 22)//
+                return"Error. The entered data are incorrect.";
+            }
 
         }
 
         else if (paco2 >= 36 && paco2 <= 44){
 
-            if (hco3 >= 22 && hco3 <= 26){
+            if (paco2 <= 37 && hco3 >= 19.7 && hco3 < 22){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (paco2 > 37 && paco2 <= 39 && hco3 >= 20.8 && hco3 < 22){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (paco2 > 43.99 && hco3 >26 && hco3 <= 26.3){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (hco3 >= 22 && hco3 <= 26){
 
                 if (ag <= 11) {
                     return "correct results";
@@ -1217,7 +1267,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     if (gapGapRatio < 0.8) {
                         return "high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
                     } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
-                        return "possible high anion gap metabolic acidosis";
+                        return "high anion gap metabolic acidosis";
                     } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
                         return "high anion gap metabolic acidosis, possible additional metabolic alkalosis";
                     } else {
@@ -1227,48 +1277,39 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             }
 
             else {  //hco3 != <22-26>
-                if (ag <= 11) {
-                    return "Make sure that entered data are correct; check electrolytes concentration to exclude existence acid-base disturbances.";
-
-                } else {
-                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
-
-                    if (gapGapRatio < 0.8) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis.";
-                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis";
-                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis, possible additional metabolic alkalosis.";
-                    } else {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis and gap metabolic alkalosis.";
-                    }
-                }
-
+                return "Error. The entered data are incorrect.";
             }
         }
 
         else {       //czyli paco2 >44
 
-            if (hco3 > 26){
+            if (paco2 > 44 && paco2 <=46 && hco3 >=24.6 && hco3 <=26){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (hco3 > 26){
                 return "respiratory acidosis and metabolic alkalosis";
             }
 
-            else {
-                return "Make sure that entered data are correct; consider presence of respiratory acidosis and metabolic alkalosis.";
 
+            else {
+                return "Error. The entered data are incorrect.";
 
             }
         }
     }
-
 
     static String normatywne2 (double hco3, double paco2, double ag) {
         //czyli pH >=7.4 && <= 7.44
         double gapGapRatio = dajGapGapRatio(ag, hco3);
 
         if (paco2 < 36){
-            //zas odd i kw met
 
+            if (paco2 >= 35 && hco3 > 22 && hco3 <=22.9){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (hco3 < 22) {  //zas odd i kw met
 
                 if (ag <= 11) {
                     return "respiratory alkalosis and normal anion gap metabolic acidosis";
@@ -1286,17 +1327,31 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                         return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
                     }
                 }
-            //pozostałe warianty HCO3 nie istnieją, są niezgodne z HH
+            }
+            else { //if (hco3 >= 22)
+                return "Error. The entered data are incorrect.";
+            }
         }
 
         else if (paco2 >= 36 && paco2 <= 44){
 
-            if (hco3 >= 22 && hco3 <= 26){
+            if (paco2 <= 36.2 && hco3 >= 21.7 && hco3 <22){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (paco2 >= 43 && hco3 > 26 && hco3 <= 28){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+            else if (paco2 >= 41 && paco2 < 43 && hco3 > 26 && hco3 <= 27.5){
+                return "The entered data do not provide a definite answer. Re-run the tests.";
+            }
+
+            else if (hco3 >= 22 && hco3 <= 26){
 
                 if (ag <= 11) {
                     return "correct results";
-
-                } else {
+                }
+                else {
                     //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
 
                     if (gapGapRatio < 0.8) {
@@ -1311,54 +1366,25 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 }
             }
 
-            else if (hco3 < 21) {
-                if (ag <= 11) {
-                    return "Make sure that entered data are correct; check electrolytes concentration to exclude existence acid-base disturbances.";
-                } else {
-                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
 
-                    if (gapGapRatio < 0.8) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis.";
-                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis";
-                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis, possible additional metabolic alkalosis.";
-                    } else {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis and gap metabolic alkalosis.";
-                    }
-                }
-            }
-            else if (hco3 >= 21 && hco3 < 22){
-                if (ag <= 11) {
-                    return "correct results";
-
-                } else {
-                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
-
-                    if (gapGapRatio < 0.8) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis.";
-                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis";
-                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis, possible additional metabolic alkalosis.";
-                    } else {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis and gap metabolic alkalosis.";
-                    }
-                }
-
-            }
-
-            else {  //hco3 >26>
-                    return "Make sure that entered data are correct; consider presence of metabolic alkalosis and respiratory acidosis.";
+            else {  //hco3 != 22-26
+                return "Error. The entered data are incorrect.";
 
             }
         }
+
 
         else {       //czyli paco2 >44
 
-                return "respiratory acidosis and metabolic alkalosis";
 
+            if (hco3 > 26) {
+                return "respiratory acidosis and metabolic alkalosis";
+            }
+            else {  //hco3 <= 26
+                return "Error. The entered data are incorrect.";
+            }
         }
+
     }
 
 
