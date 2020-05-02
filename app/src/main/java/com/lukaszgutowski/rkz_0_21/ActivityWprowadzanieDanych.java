@@ -1357,7 +1357,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     if (gapGapRatio < 0.8) {
                         return "high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
                     } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
-                        return "possible high anion gap metabolic acidosis";
+                        return "high anion gap metabolic acidosis";
                     } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
                         return "high anion gap metabolic acidosis, possible additional metabolic alkalosis";
                     } else {
@@ -1427,7 +1427,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
         }
 
-        else if  (ph < ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) - 0.015 || ph > ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) + 0.015 ) {
+        else if  (ph < ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) - 0.1 || ph > ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) + 0.1 ) {
             return "Incorrect data. Henderson–Hasselbalch equation is not fulfilled.";
         }
 
@@ -1629,10 +1629,8 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
             }
             else {
-                // czyli sbe >= -2          wszystkie powyżej 25 równanie HH wyrzuca jako błąd niezgodny z równaniem
-                //gdy zgodne z HH: kwasica oddechowa (możliwe dla max paco2 44 i hco3 24 w teorii, w programie hco3 25 teżB przejdzei ze względu na +/- 0.02)
-
-                return "Make sure that entered data are correct; consider presence of respiratory acidosis.";
+                // czyli sbe >= -2
+                return "Error. The entered data are incorrect.";
 
             }
 
@@ -1831,7 +1829,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
         else {   // czyli paCO2 >=36
             if (sbe <= 2) {
-                return "Make sure that entered data are correct; consider presence of respiratory and metabolic alkalosis.";
+                return "Error. The entered data are incorrect.";
 
 
 
@@ -1864,23 +1862,28 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         if (paco2 < 36){
             //zas odd i kw met
 
-            if (ag <= 11) {
-                return "respiratory alkalosis and normal anion gap metabolic acidosis";
-                //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
-            } else {
-                //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+            if (sbe < -2) {
 
-                if (sbeGapGapRatio < 0.8) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
-                } else if (sbeGapGapRatio >= 0.8 && sbeGapGapRatio <= 1.2) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis";
-                } else if (sbeGapGapRatio > 1.2 && sbeGapGapRatio <= 2) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                if (ag <= 11) {
+                    return "respiratory alkalosis and normal anion gap metabolic acidosis";
+                    //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
                 } else {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+
+                    if (sbeGapGapRatio < 0.8) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
+                    } else if (sbeGapGapRatio >= 0.8 && sbeGapGapRatio <= 1.2) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis";
+                    } else if (sbeGapGapRatio > 1.2 && sbeGapGapRatio <= 2) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                    } else {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
                 }
             }
-
+            else { //czyli sbe>= -2
+                return "Error. The entered data are incorrect.";
+            }
         }
 
         else if (paco2 >= 36 && paco2 <= 44){
@@ -1906,22 +1909,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             }
 
             else {  //sbe != <-2 - 2>
-                if (ag <= 11) {
-                    return "Make sure that entered data are correct; check electrolytes concentration to exclude existence acid-base disturbances.";
-
-                } else {
-                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
-
-                    if (sbeGapGapRatio < 0.8) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis.";
-                    } else if (sbeGapGapRatio >= 0.8 && sbeGapGapRatio <= 1.2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis";
-                    } else if (sbeGapGapRatio > 1.2 && sbeGapGapRatio <= 2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis, possible additional metabolic alkalosis.";
-                    } else {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis and gap metabolic alkalosis.";
-                    }
-                }
+                return " Error. The entered data are incorrect.";
 
             }
         }
@@ -1932,8 +1920,8 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 return "respiratory acidosis and metabolic alkalosis";
             }
 
-            else {
-                return "Make sure that entered data are correct; consider presence of respiratory acidosis and metabolic alkalosis.";
+            else { // czyli <= 2
+                return " Error. The entered data are incorrect.";
 
 
             }
@@ -1949,23 +1937,28 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             //zas odd i kw met
 
 
-            if (ag <= 11) {
-                return "respiratory alkalosis and normal anion gap metabolic acidosis";
-                //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
-            } else {
-                //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+            if ( sbe < -2) {
 
-                if (sbeGapGapRatio < 0.8) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
-                } else if (sbeGapGapRatio >= 0.8 && sbeGapGapRatio <= 1.2) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis";
-                } else if (sbeGapGapRatio > 1.2 && sbeGapGapRatio <= 2) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                if (ag <= 11) {
+                    return "respiratory alkalosis and normal anion gap metabolic acidosis";
+                    //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
                 } else {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+
+                    if (sbeGapGapRatio < 0.8) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
+                    } else if (sbeGapGapRatio >= 0.8 && sbeGapGapRatio <= 1.2) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis";
+                    } else if (sbeGapGapRatio > 1.2 && sbeGapGapRatio <= 2) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                    } else {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
                 }
             }
-            //pozostałe warianty HCO3 nie istnieją, są niezgodne z HH
+            else { // czyli SBE >= -2
+                return " Error. The entered data are incorrect.";
+            }
         }
 
         else if (paco2 >= 36 && paco2 <= 44){
@@ -1990,53 +1983,19 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 }
             }
 
-            else if (sbe < -2) {
-                if (ag <= 11) {
-                    return "Make sure that entered data are correct; check electrolytes concentration to exclude existence acid-base disturbances.";
-                } else {
-                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
 
-                    if (sbeGapGapRatio < 0.8) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis.";
-                    } else if (sbeGapGapRatio >= 0.8 && sbeGapGapRatio <= 1.2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis";
-                    } else if (sbeGapGapRatio > 1.2 && sbeGapGapRatio <= 2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis, possible additional metabolic alkalosis.";
-                    } else {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis and gap metabolic alkalosis.";
-                    }
-                }
-            }
-//            else if (hco3 >= 21 && hco3 < 22){
-//                if (ag <= 11) {
-//                    return "correct results";
-//
-//                } else {
-//                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
-//
-//                    if (sbeGapGapRatio < 0.8) {
-//                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis.";
-//                    } else if (sbeGapGapRatio >= 0.8 && sbeGapGapRatio <= 1.2) {
-//                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis";
-//                    } else if (sbeGapGapRatio > 1.2 && sbeGapGapRatio <= 2) {
-//                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis, possible additional metabolic alkalosis.";
-//                    } else {
-//                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis and gap metabolic alkalosis.";
-//                    }
-//                }
-//
-//            }
-
-            else {  //sbe >2>
+            else {  //sbe != <-2, 2>
                 return "Make sure that entered data are correct; consider presence of metabolic alkalosis and respiratory acidosis.";
 
             }
         }
 
         else {       //czyli paco2 >44
-
-            return "respiratory acidosis and metabolic alkalosis";
-
+            if (sbe > 2)
+                return "respiratory acidosis and metabolic alkalosis";
+            else { //sbe <= 2
+                return " Error. The entered data are incorrect.";
+            }
         }
     }
 
@@ -2083,7 +2042,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
         }
 
-        else if  (ph < ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) - 0.015 || ph > ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) + 0.015 ) {
+        else if  (ph < ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) - 0.1 || ph > ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) + 0.1 ) {
             return "Incorrect data. Henderson–Hasselbalch equation is not fulfilled.";
         }
 
@@ -2121,6 +2080,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             return (agc - 7) / (24 - hco3);
         }
     }
+
 
 
 
@@ -2285,10 +2245,8 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
             }
             else {
-                // czyli sbe >= -2          wszystkie powyżej 25 równanie HH wyrzuca jako błąd niezgodny z równaniem
-                //gdy zgodne z HH: kwasica oddechowa (możliwe dla max paco2 44 i hco3 24 w teorii, w programie hco3 25 teżB przejdzei ze względu na +/- 0.02)
-
-                return "Make sure that entered data are correct; consider presence of respiratory acidosis.";
+                // czyli sbe >= -2
+                return "Error. The entered data are incorrect.";
 
             }
 
@@ -2402,7 +2360,6 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         if (paco2 < 36) {
             //zasadowica oddechowa, teraz sprawdzam kompensację
 
-
             if (sbe < (0.4*(paco2 - 40)) - (0.05 * Math.abs(0.4 * (paco2 - 40)) )  ) {
                 //System.out.println("zasadowica oddechowa i kwasica metaboliczna");
 
@@ -2482,9 +2439,13 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
 
 
+
+
+
+
         else {   // czyli paCO2 >=36
             if (sbe <= 2) {
-                return "Make sure that entered data are correct; consider presence of respiratory and metabolic alkalosis.";
+                return "Error. The entered data are incorrect.";
 
 
 
@@ -2517,23 +2478,28 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         if (paco2 < 36){
             //zas odd i kw met
 
-            if (agc <= 11) {
-                return "respiratory alkalosis and normal anion gap metabolic acidosis";
-                //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
-            } else {
-                //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+            if (sbe < -2) {
 
-                if (sbeAgcGapGapRatio < 0.8) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
-                } else if (sbeAgcGapGapRatio >= 0.8 && sbeAgcGapGapRatio <= 1.2) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis";
-                } else if (sbeAgcGapGapRatio > 1.2 && sbeAgcGapGapRatio <= 2) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                if (agc <= 11) {
+                    return "respiratory alkalosis and normal anion gap metabolic acidosis";
+                    //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
                 } else {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+
+                    if (sbeAgcGapGapRatio < 0.8) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
+                    } else if (sbeAgcGapGapRatio >= 0.8 && sbeAgcGapGapRatio <= 1.2) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis";
+                    } else if (sbeAgcGapGapRatio > 1.2 && sbeAgcGapGapRatio <= 2) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                    } else {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
                 }
             }
-
+            else { //czyli sbe>= -2
+                return "Error. The entered data are incorrect.";
+            }
         }
 
         else if (paco2 >= 36 && paco2 <= 44){
@@ -2559,22 +2525,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             }
 
             else {  //sbe != <-2 - 2>
-                if (agc <= 11) {
-                    return "Make sure that entered data are correct; check electrolytes concentration to exclude existence acid-base disturbances.";
-
-                } else {
-                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
-
-                    if (sbeAgcGapGapRatio < 0.8) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis.";
-                    } else if (sbeAgcGapGapRatio >= 0.8 && sbeAgcGapGapRatio <= 1.2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis";
-                    } else if (sbeAgcGapGapRatio > 1.2 && sbeAgcGapGapRatio <= 2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis, possible additional metabolic alkalosis.";
-                    } else {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis and gap metabolic alkalosis.";
-                    }
-                }
+                return " Error. The entered data are incorrect.";
 
             }
         }
@@ -2585,8 +2536,8 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 return "respiratory acidosis and metabolic alkalosis";
             }
 
-            else {
-                return "Make sure that entered data are correct; consider presence of respiratory acidosis and metabolic alkalosis.";
+            else { // czyli <= 2
+                return " Error. The entered data are incorrect.";
 
 
             }
@@ -2602,23 +2553,28 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             //zas odd i kw met
 
 
-            if (agc <= 11) {
-                return "respiratory alkalosis and normal anion gap metabolic acidosis";
-                //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
-            } else {
-                //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+            if ( sbe < -2) {
 
-                if (sbeAgcGapGapRatio < 0.8) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
-                } else if (sbeAgcGapGapRatio >= 0.8 && sbeAgcGapGapRatio <= 1.2) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis";
-                } else if (sbeAgcGapGapRatio > 1.2 && sbeAgcGapGapRatio <= 2) {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                if (agc <= 11) {
+                    return "respiratory alkalosis and normal anion gap metabolic acidosis";
+                    //nie daję tu zakresu 3-11 bo wartosci poniżej 3 powinny być odrzucane od razu jako błąd
                 } else {
-                    return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+
+                    if (sbeAgcGapGapRatio < 0.8) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
+                    } else if (sbeAgcGapGapRatio >= 0.8 && sbeAgcGapGapRatio <= 1.2) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis";
+                    } else if (sbeAgcGapGapRatio > 1.2 && sbeAgcGapGapRatio <= 2) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                    } else {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
                 }
             }
-            //pozostałe warianty HCO3 nie istnieją, są niezgodne z HH
+            else { // czyli SBE >= -2
+                return " Error. The entered data are incorrect.";
+            }
         }
 
         else if (paco2 >= 36 && paco2 <= 44){
@@ -2643,57 +2599,21 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 }
             }
 
-            else if (sbe < -2) {
-                if (agc <= 11) {
-                    return "Make sure that entered data are correct; check electrolytes concentration to exclude existence acid-base disturbances.";
-                } else {
-                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
 
-                    if (sbeAgcGapGapRatio < 0.8) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis.";
-                    } else if (sbeAgcGapGapRatio >= 0.8 && sbeAgcGapGapRatio <= 1.2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis";
-                    } else if (sbeAgcGapGapRatio > 1.2 && sbeAgcGapGapRatio <= 2) {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis, possible additional metabolic alkalosis.";
-                    } else {
-                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis and gap metabolic alkalosis.";
-                    }
-                }
-            }
-//            else if (hco3 >= 21 && hco3 < 22){
-//                if (ag <= 11) {
-//                    return "correct results";
-//
-//                } else {
-//                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
-//
-//                    if (sbeGapGapRatio < 0.8) {
-//                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis.";
-//                    } else if (sbeGapGapRatio >= 0.8 && sbeGapGapRatio <= 1.2) {
-//                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis";
-//                    } else if (sbeGapGapRatio > 1.2 && sbeGapGapRatio <= 2) {
-//                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis, possible additional metabolic alkalosis.";
-//                    } else {
-//                        return "Make sure that entered data are correct; consider presence of high anion gap metabolic acidosis and gap metabolic alkalosis.";
-//                    }
-//                }
-//
-//            }
-
-            else {  //sbe >2>
+            else {  //sbe != <-2, 2>
                 return "Make sure that entered data are correct; consider presence of metabolic alkalosis and respiratory acidosis.";
 
             }
         }
 
         else {       //czyli paco2 >44
-
-            return "respiratory acidosis and metabolic alkalosis";
-
+            if (sbe > 2)
+                return "respiratory acidosis and metabolic alkalosis";
+            else { //sbe <= 2
+                return " Error. The entered data are incorrect.";
+            }
         }
     }
-
-
 
 
 
