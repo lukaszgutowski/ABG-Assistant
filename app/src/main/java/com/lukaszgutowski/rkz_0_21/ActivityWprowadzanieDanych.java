@@ -114,7 +114,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         }
 
         else if(agc < 3 ){
-            return "Low anion gap - most probably caused by laboratory error. See ‘more informations’." ;
+            return "Low anion gap - most probably caused by laboratory error. See ‘more information’." ;
 
         }
 
@@ -778,7 +778,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         }
 
         else if(ag < 3 ){
-            return "Low anion gap. Most probably laboratory error. See ‘more informations’." ;
+            return "Low anion gap. Most probably laboratory error. See ‘more information’." ;
 
         }
 
@@ -1000,8 +1000,6 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         else {
             //czyli gdy paCO2 > 44
             //System.out.println("kwasica oddechowa");
-            // nie ma sensu sprawdzać HCO3 - bo poniżej 22 i tak jest zaburzenie mieszane,
-
 
             //tutaj sprwdzam oczekiwane paCO2 i porównuję z wpisanym
 
@@ -1072,26 +1070,162 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
             else if (hco3 >= (0.99 * szacowaneHco3KwOddOstra) && hco3 <= (1.01 * szacowaneHco3KwOddOstra)){
                 //System.out.println("ostra kwasica oddechowa");
-                return "acute respiratory acidosis";
+                if (ag >= 30) {
+
+                    if (gapGapRatio < 0.8) {
+                        return "acute respiratory acidosis and high anion gap metabolic acidosis, possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "acute respiratory acidosis and high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "acute respiratory acidosis and high anion gap metabolic acidosis, possible metabolic alkalosis";
+                    } else {
+                        return "acute respiratory acidosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
+                }
+                else if (ag>= 25 && ag <30){
+
+                    if (gapGapRatio < 0.8) {
+                        return "acute respiratory acidosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "acute respiratory acidosis; consider presence of high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "acute respiratory acidosis; consider presence of high anion gap metabolic acidosis with possible metabolic alkalosis";
+                    } else {
+                        return "acute respiratory acidosis; consider presence of high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
+                }
+
+                else {
+                    return "acute respiratory acidosis";
+                }
             }
 
             else if (hco3 > (1.01 * szacowaneHco3KwOddOstra) && hco3 < szacowaneHco3KwOddPrzewlA) {
                 //System.out.println("kwasica oddechowa");
-                return "partially compensated respiratory acidosis";
+
+                if (ag >= 30) {
+
+                    if (gapGapRatio < 0.8) {
+                        return "partially compensated respiratory acidosis and high anion gap metabolic acidosis, possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "partially compensated respiratory acidosis and high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "partially compensated respiratory acidosis and high anion gap metabolic acidosis, possible metabolic alkalosis";
+                    } else {
+                        return "partially compensated respiratory acidosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
+                }
+                else if (ag>= 25 && ag <30){
+
+                    if (gapGapRatio < 0.8) {
+                        return "partially compensated respiratory acidosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "partially compensated respiratory acidosis; consider presence of high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "partially compensated respiratory acidosis; consider presence of high anion gap metabolic acidosis with possible metabolic alkalosis";
+                    } else {
+                        return "partially compensated respiratory acidosis; consider presence of high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
+                }
+
+                else {
+
+                    return "partially compensated respiratory acidosis";
+                }
             }
 
             else if (hco3 >=  szacowaneHco3KwOddPrzewlA && hco3 <= szacowaneHco3KwOddPrzewlB) {
                 //System.out.println("przewlekła kwasica oddechowa");
-                return "chronic respiratory acidosis";
+
+                if (ag >= 30) {
+
+                    if (gapGapRatio < 0.8) {
+                        return "chronic respiratory acidosis and high anion gap metabolic acidosis, possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "chronic respiratory acidosis and high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "chronic respiratory acidosis and high anion gap metabolic acidosis, possible metabolic alkalosis";
+                    } else {
+                        return "chronic respiratory acidosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
+                }
+                else if (ag>= 25 && ag <30){
+
+                    if (gapGapRatio < 0.8) {
+                        return "chronic respiratory acidosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "chronic respiratory acidosis; consider presence of high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "chronic respiratory acidosis; consider presence of high anion gap metabolic acidosis with possible metabolic alkalosis";
+                    } else {
+                        return "chronic respiratory acidosis; consider presence of high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
+                }
+                else {
+                    return "chronic respiratory acidosis";
+                }
             }
 
             else if (hco3 >  szacowaneHco3KwOddPrzewlB && hco3 <= (1.05 *szacowaneHco3KwOddPrzewlB)) {
-                //System.out.println("przewlekła kwasica oddechowa i prawdopodobnie zas metaboliczna");
-                return "respiratory acidosis, probably with metabolic alkalosis";
+                //System.out.println("kwasica oddechowa i prawdopodobnie zas metaboliczna");
+
+                if (ag >= 30) {
+
+                    if (gapGapRatio < 0.8) {
+                        return "respiratory acidosis and high anion gap metabolic acidosis, probably with metabolic alkalosis; additional normal anion gap metabolic acidosis is also possible";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "respiratory acidosis and high anion gap metabolic acidosis, probably with metabolic alkalosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "respiratory acidosis and high anion gap metabolic acidosis, probably with metabolic alkalosis";
+                    } else {
+                        return "respiratory acidosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
+                }
+                else if (ag>= 25 && ag <30){
+
+                    if (gapGapRatio < 0.8) {
+                        return "respiratory acidosis, probably with metabolic alkalosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "respiratory acidosis, probably with metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "respiratory acidosis, probably with metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    } else {
+                        return "respiratory acidosis, probably with metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    }
+                }
+                else {
+                    return "respiratory acidosis, probably with metabolic alkalosis";
+                }
             }
 
-            else {
-                return "respiratory acidosis and metabolic alkalosis";
+            else {     // kwasica oddechowa i zasadowica metaboliczna
+                if (ag >= 30) {
+
+                    if (gapGapRatio < 0.8) {
+                        return "respiratory acidosis and metabolic alkalosis and high anion gap metabolic acidosis; possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "respiratory acidosis and metabolic alkalosis and high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "respiratory acidosis and metabolic alkalosis and high anion gap metabolic acidosis";
+                    } else {
+                        return "respiratory acidosis and metabolic alkalosis and high anion gap metabolic acidosis";
+                    }
+                }
+                else if (ag>= 25 && ag <30){
+
+                    if (gapGapRatio < 0.8) {
+                        return "respiratory acidosis and metabolic alkalosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "respiratory acidosis and metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "respiratory acidosis and metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    } else {
+                        return "respiratory acidosis and metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    }
+                }
+                else {
+                    return "respiratory acidosis and metabolic alkalosis";
+                }
             }
 
         }
@@ -1154,24 +1288,163 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             }
 
             else if (hco3 >= szacowaneHco3ZasOddPrzewlB && hco3 <= szacowaneHco3ZasOddPrzewlA) {
-                //System.out.println("przewlekła kwasica oddechowa");
-                return "chronic respiratory alkalosis";
+                //System.out.println("przewlekła zasadowica oddechowa");
+
+                if (ag >= 30) {
+
+                    if (gapGapRatio < 0.8) {
+                        return "chronic respiratory alkalosis and high anion gap metabolic acidosis, possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "chronic respiratory alkalosis and high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "chronic respiratory alkalosis and high anion gap metabolic acidosis, possible metabolic alkalosis";
+                    } else {
+                        return "chronic respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
+                }
+                else if (ag>= 25 && ag <30){
+
+                    if (gapGapRatio < 0.8) {
+                        return "chronic respiratory alkalosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "chronic respiratory alkalosis; consider presence of high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "chronic respiratory alkalosis; consider presence of high anion gap metabolic acidosis with possible metabolic alkalosis";
+                    } else {
+                        return "chronic respiratory alkalosis; consider presence of high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
+                }
+                else {
+                    return "chronic respiratory alkalosis";
+                }
             }
 
             else if (hco3 > (szacowaneHco3ZasOddPrzewlA) && hco3 < 0.99 * szacowaneHco3ZasOddOstra) {
-                //System.out.println("kwasica oddechowa");
-                return "partially compensated respiratory alkalosis";
+                //System.out.println("zasadowica oddechowa");
+
+                if (ag >= 30) {
+
+                    if (gapGapRatio < 0.8) {
+                        return "partially compensated respiratory alkalosis and high anion gap metabolic acidosis, possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "partially compensated respiratory alkalosis and high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "partially compensated respiratory alkalosis and high anion gap metabolic acidosis, possible metabolic alkalosis";
+                    } else {
+                        return "partially compensated respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
+                }
+                else if (ag>= 25 && ag <30){
+
+                    if (gapGapRatio < 0.8) {
+                        return "partially compensated respiratory alkalosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "partially compensated respiratory alkalosis; consider presence of high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "partially compensated respiratory alkalosis; consider presence of high anion gap metabolic acidosis with possible metabolic alkalosis";
+                    } else {
+                        return "partially compensated respiratory alkalosis; consider presence of high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
+                }
+
+                else {
+                    return "partially compensated respiratory alkalosis";
+                }
             }
 
             else if (hco3 >= (0.99 * szacowaneHco3ZasOddOstra) && hco3 <= (1.01 * szacowaneHco3ZasOddOstra)) {
                 //System.out.println("ostra kwasica oddechowa");
-                return "acute respiratory alkalosis";
+
+                if (ag >= 30) {
+
+                    if (gapGapRatio < 0.8) {
+                        return "acute respiratory alkalosis and high anion gap metabolic acidosis, possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "acute respiratory alkalosis and high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "acute respiratory alkalosis and high anion gap metabolic acidosis, possible metabolic alkalosis";
+                    } else {
+                        return "acute respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
+                }
+                else if (ag>= 25 && ag <30){
+
+                    if (gapGapRatio < 0.8) {
+                        return "acute respiratory alkalosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "acute respiratory alkalosis; consider presence of high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "acute respiratory alkalosis; consider presence of high anion gap metabolic acidosis with possible metabolic alkalosis";
+                    } else {
+                        return "acute respiratory alkalosis; consider presence of high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
+                }
+
+                else {
+                    return "acute respiratory alkalosis";
+                }
+
             } else if (hco3 > (1.01 * szacowaneHco3ZasOddOstra) && hco3 <= (1.05 * szacowaneHco3ZasOddOstra)) {
-                //System.out.println("przewlekła kwasica oddechowa + zas met");
-                return "respiratory alkalosis, probably with metabolic alkalosis";
+                //System.out.println("przewlekła zasadowica oddechowa + prawd  zas met");
+
+                if (ag >= 30) {
+
+                    if (gapGapRatio < 0.8) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis, probably with metabolic alkalosis; additional normal anion gap metabolic acidosis is also possible";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis, probably with metabolic alkalosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis, probably with metabolic alkalosis";
+                    } else {
+                        return "respiratory alkalosis and high anion gap metabolic acidosis and metabolic alkalosis";
+                    }
+                }
+                else if (ag>= 25 && ag <30){
+
+                    if (gapGapRatio < 0.8) {
+                        return "respiratory alkalosis, probably with metabolic alkalosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "respiratory alkalosis, probably with metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "respiratory alkalosis, probably with metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    } else {
+                        return "respiratory alkalosis, probably with metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    }
+                }
+                else {
+                    return "respiratory alkalosis, probably with metabolic alkalosis";
+                }
+
             } else {
                 // that is when hco3 > 1.05 * szacowaneHco3ZasOddOstra
-                return "respiratory alkalosis and metabolic alkalosis";
+
+                if (ag >= 30) {
+
+                    if (gapGapRatio < 0.8) {
+                        return "respiratory alkalosis and metabolic alkalosis and high anion gap metabolic acidosis; possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "respiratory alkalosis and metabolic alkalosis and high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "respiratory alkalosis and metabolic alkalosis and high anion gap metabolic acidosis";
+                    } else {
+                        return "respiratory alkalosis and metabolic alkalosis and high anion gap metabolic acidosis";
+                    }
+                }
+                else if (ag>= 25 && ag <30){
+
+                    if (gapGapRatio < 0.8) {
+                        return "respiratory alkalosis and metabolic alkalosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "respiratory alkalosis and metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "respiratory alkalosis and metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    } else {
+                        return "respiratory alkalosis and metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    }
+                }
+                else {
+                    return "respiratory alkalosis and metabolic alkalosis";
+                }
             }
         }
 
@@ -1198,19 +1471,155 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
 
                 if (paco2 <  0.95 * (przewidywanePaco2Zasadowe - 2) ) {
-                    return "metabolic alkalosis and respiratory alkalosis";
+                  //zas metab i zas oddechowa
+                    if (ag >= 30) {
+
+                        if (gapGapRatio < 0.8) {
+                            return "metabolic alkalosis and respiratory alkalosis and high anion gap metabolic acidosis; possible normal anion gap metabolic acidosis";
+                        } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                            return "metabolic alkalosis and respiratory alkalosis and high anion gap metabolic acidosis";
+                        } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                            return "metabolic alkalosis and respiratory alkalosis and high anion gap metabolic acidosis";
+                        } else {
+                            return "metabolic alkalosis and respiratory alkalosis and high anion gap metabolic acidosis";
+                        }
+                    }
+                    else if (ag>= 25 && ag <30){
+
+                        if (gapGapRatio < 0.8) {
+                            return "metabolic alkalosis and respiratory alkalosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                        } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                            return "metabolic alkalosis and respiratory alkalosis; consider presence of high anion gap metabolic acidosis";
+                        } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                            return "metabolic alkalosis and respiratory alkalosis; consider presence of high anion gap metabolic acidosis";
+                        } else {
+                            return "metabolic alkalosis and respiratory alkalosis; consider presence of high anion gap metabolic acidosis";
+                        }
+                    }
+                    else {
+                        return "metabolic alkalosis and respiratory alkalosis";
+                    }
 
                 } else if (paco2 >= 0.95 * ((przewidywanePaco2Zasadowe - 2) ) && paco2 <   (przewidywanePaco2Zasadowe - 2)) {
-                    return "metabolic alkalosis, probably with respiratory alkalosis";
+                   //zas metab i możliwa zas oddechowa
+                    if (ag >= 30) {
+
+                        if (gapGapRatio < 0.8) {
+                            return "metabolic alkalosis and high anion gap metabolic acidosis, probably with respiratory alkalosis; additional normal anion gap metabolic acidosis is also possible";
+                        } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                            return "metabolic alkalosis and high anion gap metabolic acidosis, probably with respiratory alkalosis";
+                        } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                            return "metabolic alkalosis and high anion gap metabolic acidosis, probably with respiratory alkalosis";
+                        } else {
+                            return "metabolic alkalosis and high anion gap metabolic acidosis, probably with respiratory alkalosis";
+                        }
+                    }
+                    else if (ag>= 25 && ag <30){
+
+                        if (gapGapRatio < 0.8) {
+                            return "metabolic alkalosis, probably with respiratory alkalosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                        } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                            return "metabolic alkalosis, probably with respiratory alkalosis; consider presence of high anion gap metabolic acidosis";
+                        } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                            return "metabolic alkalosis, probably with respiratory alkalosis; consider presence of high anion gap metabolic acidosis";
+                        } else {
+                            return "metabolic alkalosis, probably with respiratory alkalosis; consider presence of high anion gap metabolic acidosis";
+                        }
+                    }
+                    else {
+                        return "metabolic alkalosis, probably with respiratory alkalosis";
+                    }
 
                 } else if (paco2 >= (przewidywanePaco2Zasadowe - 2)  && paco2 <= (przewidywanePaco2Zasadowe + 2)) {
-                    return "metabolic alkalosis";
+                    //zas metab
+
+                    if (ag >= 30) {
+
+                        if (gapGapRatio < 0.8) {
+                            return "metabolic alkalosis and high anion gap metabolic acidosis; possible normal anion gap metabolic acidosis";
+                        } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                            return "metabolic alkalosis and high anion gap metabolic acidosis";
+                        } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                            return "metabolic alkalosis and high anion gap metabolic acidosis";
+                        } else {
+                            return "metabolic alkalosis and high anion gap metabolic acidosis";
+                        }
+                    }
+                    else if (ag>= 25 && ag <30){
+
+                        if (gapGapRatio < 0.8) {
+                            return "metabolic alkalosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                        } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                            return "metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                        } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                            return "metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                        } else {
+                            return "metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                        }
+                    }
+                    else {
+                        return "metabolic alkalosis";
+                    }
 
                 } else if (paco2 > (przewidywanePaco2Zasadowe + 2)  && paco2 <= 1.05 *(przewidywanePaco2Zasadowe + 2)) {
-                    return "metabolic alkalosis, probably with respiratory acidosis";
+                    //zas metab i możliwa kwas oddechowa
+                    if (ag >= 30) {
+
+                        if (gapGapRatio < 0.8) {
+                            return "metabolic alkalosis and high anion gap metabolic acidosis, probably with respiratory acidosis; additional normal anion gap metabolic acidosis is also possible";
+                        } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                            return "metabolic alkalosis and high anion gap metabolic acidosis, probably with respiratory acidosis";
+                        } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                            return "metabolic alkalosis and high anion gap metabolic acidosis, probably with respiratory acidosis";
+                        } else {
+                            return "metabolic alkalosis and high anion gap metabolic acidosis, probably with respiratory acidosis";
+                        }
+                    }
+                    else if (ag>= 25 && ag <30){
+
+                        if (gapGapRatio < 0.8) {
+                            return "metabolic alkalosis, probably with respiratory acidosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                        } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                            return "metabolic alkalosis, probably with respiratory acidosis; consider presence of high anion gap metabolic acidosis";
+                        } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                            return "metabolic alkalosis, probably with respiratory acidosis; consider presence of high anion gap metabolic acidosis";
+                        } else {
+                            return "metabolic alkalosis, probably with respiratory acidosis; consider presence of high anion gap metabolic acidosis";
+                        }
+                    }
+                    else {
+                        return "metabolic alkalosis, probably with respiratory acidosis";
+                    }
 
                 } else {   //czyli paCO2 > 1.05 * (ocz paco2 + 2)
-                    return "metabolic alkalosis and respiratory acidosis";
+                    //zas metab i kwas oddechowa
+                    if (ag >= 30) {
+
+                        if (gapGapRatio < 0.8) {
+                            return "metabolic alkalosis and respiratory acidosis and high anion gap metabolic acidosis; possible normal anion gap metabolic acidosis";
+                        } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                            return "metabolic alkalosis and respiratory acidosis and high anion gap metabolic acidosis";
+                        } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                            return "metabolic alkalosis and respiratory acidosis and high anion gap metabolic acidosis";
+                        } else {
+                            return "metabolic alkalosis and respiratory acidosis and high anion gap metabolic acidosis";
+                        }
+                    }
+                    else if (ag>= 25 && ag <30){
+
+                        if (gapGapRatio < 0.8) {
+                            return "metabolic alkalosis and respiratory acidosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                        } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                            return "metabolic alkalosis and respiratory acidosis; consider presence of high anion gap metabolic acidosis";
+                        } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                            return "metabolic alkalosis and respiratory acidosis; consider presence of high anion gap metabolic acidosis";
+                        } else {
+                            return "metabolic alkalosis and respiratory acidosis; consider presence of high anion gap metabolic acidosis";
+                        }
+                    }
+                    else {
+                        return "metabolic alkalosis and respiratory acidosis";
+                    }
                 }
             }
         }
@@ -1294,7 +1703,34 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             }
 
             else if (hco3 > 26){
-                return "respiratory acidosis and metabolic alkalosis";
+            //kwas oddechowa i zas metab
+                if (ag >= 30) {
+
+                    if (gapGapRatio < 0.8) {
+                        return "respiratory acidosis and metabolic alkalosis and high anion gap metabolic acidosis; possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "respiratory acidosis and metabolic alkalosis and high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "respiratory acidosis and metabolic alkalosis and high anion gap metabolic acidosis";
+                    } else {
+                        return "respiratory acidosis and metabolic alkalosis and high anion gap metabolic acidosis";
+                    }
+                }
+                else if (ag>= 25 && ag <30){
+
+                    if (gapGapRatio < 0.8) {
+                        return "respiratory acidosis and metabolic alkalosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "respiratory acidosis and metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "respiratory acidosis and metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    } else {
+                        return "respiratory acidosis and metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    }
+                }
+                else {
+                    return "respiratory acidosis and metabolic alkalosis";
+                }
             }
 
 
@@ -1384,7 +1820,34 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
 
             if (hco3 > 26) {
-                return "respiratory acidosis and metabolic alkalosis";
+                //kwas oddechowa i zas metab
+                if (ag >= 30) {
+
+                    if (gapGapRatio < 0.8) {
+                        return "respiratory acidosis and metabolic alkalosis and high anion gap metabolic acidosis; possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "respiratory acidosis and metabolic alkalosis and high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "respiratory acidosis and metabolic alkalosis and high anion gap metabolic acidosis";
+                    } else {
+                        return "respiratory acidosis and metabolic alkalosis and high anion gap metabolic acidosis";
+                    }
+                }
+                else if (ag>= 25 && ag <30){
+
+                    if (gapGapRatio < 0.8) {
+                        return "respiratory acidosis and metabolic alkalosis; consider presence of high anion gap metabolic acidosis with possible normal anion gap metabolic acidosis";
+                    } else if (gapGapRatio >= 0.8 && gapGapRatio <= 1.2) {
+                        return "respiratory acidosis and metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    } else if (gapGapRatio > 1.2 && gapGapRatio <= 2) {
+                        return "respiratory acidosis and metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    } else {
+                        return "respiratory acidosis and metabolic alkalosis; consider presence of high anion gap metabolic acidosis";
+                    }
+                }
+                else {
+                    return "respiratory acidosis and metabolic alkalosis";
+                }
             }
             else {  //hco3 <= 26
                 return "Error. The entered data are incorrect.";
@@ -1438,7 +1901,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         }
 
         else if(ag < 3 ){
-            return "Low anion gap. Most probably laboratory error. See ‘more informations’." ;
+            return "Low anion gap. Most probably laboratory error. See ‘more information’." ;
 
         }
 
@@ -1914,7 +2377,27 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 }
             }
 
-            else {  //sbe != <-2 - 2>
+            else if (sbe >= -5 && sbe < -2 || sbe > 2 && sbe <= 5 ){
+
+                if (ag <= 11) {
+                    return "correct results";
+
+                } else {
+                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+
+                    if (sbeGapGapRatio < 0.8) {
+                        return "high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
+                    } else if (sbeGapGapRatio >= 0.8 && sbeGapGapRatio <= 1.2) {
+                        return "possible high anion gap metabolic acidosis";
+                    } else if (sbeGapGapRatio > 1.2 && sbeGapGapRatio <= 2) {
+                        return "high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                    } else {
+                        return "high anion gap metabolic acidosis and  metabolic alkalosis";
+                    }
+                }
+            }
+
+            else {  //sbe != <-5 ; 5>
                 return " Error. The entered data are incorrect.";
 
             }
@@ -1989,8 +2472,27 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 }
             }
 
+            else if (sbe >= -5 && sbe < -2 || sbe > 2 && sbe <= 5 ){
 
-            else {  //sbe != <-2, 2>
+                if (ag <= 11) {
+                    return "correct results";
+
+                } else {
+                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+
+                    if (sbeGapGapRatio < 0.8) {
+                        return "high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
+                    } else if (sbeGapGapRatio >= 0.8 && sbeGapGapRatio <= 1.2) {
+                        return "possible high anion gap metabolic acidosis";
+                    } else if (sbeGapGapRatio > 1.2 && sbeGapGapRatio <= 2) {
+                        return "high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                    } else {
+                        return "high anion gap metabolic acidosis and  metabolic alkalosis";
+                    }
+                }
+            }
+
+            else {  //sbe != <-5, 5>
                 return "Make sure that entered data are correct; consider presence of metabolic alkalosis and respiratory acidosis.";
 
             }
@@ -2053,7 +2555,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         }
 
         else if(agc < 3 ){
-            return "Low anion gap. Most probably laboratory error. See ‘more informations’." ;
+            return "Low anion gap. Most probably laboratory error. See ‘more information’." ;
 
         }
 
@@ -2530,7 +3032,27 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 }
             }
 
-            else {  //sbe != <-2 - 2>
+            else if (sbe >= -5 && sbe < -2 || sbe > 2 && sbe <= 5 ){
+
+                if (agc <= 11) {
+                    return "correct results";
+
+                } else {
+                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+
+                    if (sbeAgcGapGapRatio < 0.8) {
+                        return "high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
+                    } else if (sbeAgcGapGapRatio >= 0.8 && sbeAgcGapGapRatio <= 1.2) {
+                        return "possible high anion gap metabolic acidosis";
+                    } else if (sbeAgcGapGapRatio > 1.2 && sbeAgcGapGapRatio <= 2) {
+                        return "high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                    } else {
+                        return "high anion gap metabolic acidosis and  metabolic alkalosis";
+                    }
+                }
+            }
+
+            else {  //sbe != <-5 ; 5>
                 return " Error. The entered data are incorrect.";
 
             }
@@ -2605,8 +3127,27 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 }
             }
 
+            else if (sbe >= -5 && sbe < -2 || sbe > 2 && sbe <= 5 ){
 
-            else {  //sbe != <-2, 2>
+                if (agc <= 11) {
+                    return "correct results";
+
+                } else {
+                    //sprawdzam stosunek luka/luka i przyporządkowuje zaburzenie w zależności od wyniku
+
+                    if (sbeAgcGapGapRatio < 0.8) {
+                        return "high anion gap metabolic acidosis , possible additional normal anion gap metabolic acidosis";
+                    } else if (sbeAgcGapGapRatio >= 0.8 && sbeAgcGapGapRatio <= 1.2) {
+                        return "possible high anion gap metabolic acidosis";
+                    } else if (sbeAgcGapGapRatio > 1.2 && sbeAgcGapGapRatio <= 2) {
+                        return "high anion gap metabolic acidosis, possible additional metabolic alkalosis";
+                    } else {
+                        return "high anion gap metabolic acidosis and  metabolic alkalosis";
+                    }
+                }
+            }
+
+            else {  //sbe != <-5, 5>
                 return "Make sure that entered data are correct; consider presence of metabolic alkalosis and respiratory acidosis.";
 
             }
