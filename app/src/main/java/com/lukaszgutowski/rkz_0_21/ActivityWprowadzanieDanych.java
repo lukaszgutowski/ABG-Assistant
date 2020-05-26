@@ -100,12 +100,17 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             return "incorrect pH" ;
 
         }
-        else if(paco2 > 374){
+        else if(paco2 > 300){
             return "incorrect PaCO2" ;
 
         }
         else if(hco3 >150){
             return "incorrect HCO3" ;
+
+        }
+
+        else if(agc >99){
+            return "incorrect AG" ;
 
         }
 
@@ -1236,6 +1241,10 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             return "incorrect HCO3" ;
 
         }
+        else if(ag >99){
+            return "incorrect AG" ;
+
+        }
 
         else if  (ph < ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) - 0.1 || ph > ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) + 0.1 ) {
             return "Incorrect data. Henderson–Hasselbalch equation is not fulfilled.";
@@ -2359,6 +2368,10 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
             return "incorrect HCO3" ;
 
         }
+        else if(ag >99){
+            return "incorrect AG" ;
+
+        }
 
         else if  (ph < ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) - 0.1 || ph > ( 6.1 + Math.log10( hco3 / (0.03 * paco2))) + 0.1 ) {
             return "Incorrect data. Henderson–Hasselbalch equation is not fulfilled.";
@@ -3462,6 +3475,10 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
         }
         else if(hco3 >150){
             return "incorrect HCO3" ;
+
+        }
+        else if(agc >99){
+            return "incorrect AG" ;
 
         }
 

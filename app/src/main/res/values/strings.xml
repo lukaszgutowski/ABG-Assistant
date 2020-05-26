@@ -1,10 +1,16 @@
 <resources>
-    <string name="app_name">ABG Diagnoser</string>
-    <string name="textview">\n \t To compare results derived from all of the combinations, you have to enter all required data.
-    If you do not enter Albumine value, you will not be able to get results from the Boston approach with corrected AG nor the Copenhagen approach with corrected AG.
-    \n \t Remember that this application works based only on laboratory results.
-     It has many limitations: reference values are characteristic for specific groups and laboratories, all abg diagnosing equations are being questioned, and so on.
+    <string name="app_name">ABG Assistant</string>
+    <string name="textview">\n \t Suggested results are not a substitute for clinical judgement. All calculations must be confirmed before use.
+        The authors make no claims of the accuracy of the information contained herein.
+        Neither author of application nor any other party involved in the preparation of publication shall be liable for any special,
+        consequential, or exemplary damages resulting in whole or part from any user`s use of or reliance upon this material.
+         \n \t Remember that results given by this application are based only on laboratory results.
+     This approach has many limitations, eg: reference values are characteristic for specific groups and laboratories, all ABG compensation equations are being questioned, and so on.
     \n \t You should always take into account medical history and patients state.
+        \n \t To compare results derived from all of the combinations, you have to enter all required data.
+    If you do not enter "albumin" value, you will not be able to get results from the Boston approach with corrected AG nor the Copenhagen approach with corrected AG.
+
+
     </string>
 
 
