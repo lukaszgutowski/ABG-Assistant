@@ -27,36 +27,36 @@
         Below there are results of particular methods or information that the user did not enter parameter necessary for a specific method.
         The application allows to obtain a preliminary diagnosis of acid-base imbalance. \n \t
 
-    \n \t <big><b> 2. Common Causes of Acid - Base disorders </b></big>
+    \n <big><b> 2. Common Causes of Acid - Base disorders </b></big>
         \n \t
-    \n \t <b> Common Causes of Metabolic Alkalosis </b>
+    \n <b> Common Causes of Metabolic Alkalosis </b>
     \n \t Diuretics
     \n \t Gastric loss
-        \n \t Vomiting
-        \n \t Nasogastric suction
+        \n \t \t \t Vomiting
+        \n \t \t \t Nasogastric suction
     \n \t Exogenous alkali administration
     \n \t Potassium depletion
     \n \t Hypercalcemia
     \n \t Excess glucocorticoids or mineralocorticoids \n \t
 
-    \n \t <b> Common Causes of Respiratory Alkalosis </b>
+    \n  <b> Common Causes of Respiratory Alkalosis </b>
     \n \t Hypoxia
-        \n \tParenchymal lung disease
-        \n \tPneumonia
-        \n \tBronchial asthma
-        \n \tDiffuse interstitial fibrosis
-        \n \tPulmonary embolus
-        \n \tPulmonary edema
+        \n \t \t \t Parenchymal lung disease
+        \n \t \t \t Pneumonia
+        \n \t \t \t Bronchial asthma
+        \n \t \t \t Diffuse interstitial fibrosis
+        \n \t \t \t Pulmonary embolus
+        \n \t \t \t Pulmonary edema
     \n \tMedication and mechanical ventilation
-        \n \tSalicylates
-        \n \tNicotine
-        \n \tXanthine
+        \n \t \t \t Salicylates
+        \n \t \t \t Nicotine
+        \n \t \t \t Xanthine
     \n \tCNS disorders
-        \n \tMeningitis, encephalitis
-        \n \tHead trauma
-        \n \t Anxiety \n \t
+        \n \t \t \t Meningitis, encephalitis
+        \n \t \t \t Head trauma
+        \n \t \t \t Anxiety \n \t
 
-    \n \t <b> Common Causes of Normal Anion Gap Metabolic Acidosis </b>
+    \n <b> Common Causes of Normal Anion Gap Metabolic Acidosis </b>
         \n \tDiarrhea
         \n \tFistulous disease
         \n \tRenal tubular acidosis
@@ -65,7 +65,7 @@
         \n \tRapid normal saline rehydration
         \n \tPotassium-sparing diuretics \n \t
 
-    \n \t <b> Common Causes of High Anion Gap Metabolic Acidosis </b>
+    \n  <b> Common Causes of High Anion Gap Metabolic Acidosis </b>
         \n \t Methanol intoxication
         \n \t Uremia
         \n \t Diabetic ketoacidosis
@@ -80,27 +80,27 @@
         \n \t Toluene \n \t
 
 
-    \n \t <b> Common Causes of Acute Respiratory Acidosis </b>
+    \n <b> Common Causes of Acute Respiratory Acidosis </b>
         \n \t CNS depression:
-          \n \t Drug overdose (BZDs,  narcotics, propofol)
-          \n \t Head trauma
-          \n \t CVA
+          \n \t \t \t Drug overdose (BZDs,  narcotics, propofol)
+          \n \t \t \t Head trauma
+          \n \t \t \t CVA
         \n \t Neuromuscular disorders:
-            \n \t muscular dystrophies
-        \n \t Guillain-Barré syndrome
+            \n \t \t \t muscular dystrophies
+            \n \t \t \t Guillain-Barré syndrome
         \n \t Spinal cord injury
         \n \t Botulism
         \n \t Acute airways disease:
-            \n \t Status asthmaticus
-            \n \t Upper airway obstruction
+            \n \t \t \t Status asthmaticus
+            \n \t \t \t Upper airway obstruction
         \n \t Parenchymal and vascular disease
         \n \t Massive pulmonary emboli
-        \n \t Acute pleural or chest wall disease:
-            \n \t Pneumothorax
-            \n \t Flail chest \n \t
+        \n \t Acute pleural or chest wall disease
+            \n \t \t \t Pneumothorax
+            \n \t \t \t Flail chest \n \t
 
 
-    \n \t <b> Common Causes of Chronic Respiratory Acidosis </b>
+    \n  <b> Common Causes of Chronic Respiratory Acidosis </b>
         \n \t Central sleep apnea
         \n \t Primary alveolar hypoventilation
         \n \t Obesity hypoventilation syndrome
@@ -116,9 +116,9 @@
         \n \t COPD
         \n \t Severe chronic interstitial lung disease \n \t
 \n \t
-    \n \t <big><b> 3. Common Causes of low / negative Anion Gap </b></big>
+    \n <big><b> 3. Common Causes of low / negative Anion Gap </b></big>
 \n \t
-     \n \t <b> Common Causes of low Anion Gap </b>
+     \n  <b> Common Causes of low Anion Gap </b>
         \n \t laboratory error - most frequent cause of low AG
         \n \t underestimation of serum sodium
         \n \t overestimation of serum chloride
@@ -130,7 +130,7 @@
         \n \t lithium intoxication
         \n \t hypercalcemia \n \t
 
-    \n \t <b> Common Causes of negative Anion Gap </b>
+    \n  <b> Common Causes of negative Anion Gap </b>
         \n \t laboratory error
         \n \t bromide intoxication
         \n \t multiple myeloma
