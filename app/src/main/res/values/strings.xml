@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">ABG Assistant</string>
-    <string name="textview">\n \t Suggested results are not a substitute for clinical judgement. All calculations must be confirmed before use.
+    <string name="textview">\n \t Results suggested by this application are not a substitute for clinical judgement. All calculations must be confirmed before use.
         The authors make no claims of the accuracy of the information contained herein.
         Neither author of application nor any other party involved in the preparation of publication shall be liable for any special,
         consequential, or exemplary damages resulting in whole or part from any user\'s use of or reliance upon this material.
@@ -11,9 +11,7 @@
 
     </string>
 
-
-
-    <string name="informations">\n \t <big><b> 1. How this application works </b></big> \n \t
+    <string name="help"><big><b> How this application works </b></big> \n \t
     \n \t The \"data input\" button leads to the central part of the program. After clicking on it, a list of parameters that can be entered, along with the appropriate units,
         is displayed.
         \n \t The program has been designed to analyze results based on four possible variants simultaneously; however, some parameters are not obligatory to enter -
@@ -24,10 +22,19 @@
         that the ABG analyzer would give.
         \n \t After clicking the \"calculate\" button, the program will open the window with analyses that could be carried out using the
         entered data. At the top of the application window there is an information about how many approaches have been used and indicates the conformity of the results.
-        Below there are results of particular methods or information that the user did not enter parameter necessary for a specific method.
-        The application allows to obtain a preliminary diagnosis of acid-base imbalance. \n \t
+        Below there are results of particular methods, or information that the user did not enter parameter necessary for a specific method.
+        The application allows to obtain a preliminary diagnosis of acid-base imbalance. \n
 
-    \n <big><b> 2. Common Causes of Acid - Base disorders </b></big>
+        \n author: Łukasz Gutowski, Poznan University of Medical Sciences,
+        \n Department of Clinical Biochemistry and Laboratory Medicine
+
+
+    </string>
+
+
+    <string name="informations">
+
+    <big><b> 1. Common Causes of Acid - Base disorders </b></big>
         \n \t
     \n <b> Common Causes of Metabolic Alkalosis </b>
     \n \t Diuretics
@@ -116,7 +123,7 @@
         \n \t COPD
         \n \t Severe chronic interstitial lung disease \n \t
 \n \t
-    \n <big><b> 3. Common Causes of low / negative Anion Gap </b></big>
+    \n <big><b> 2. Common Causes of low / negative Anion Gap </b></big>
 \n \t
      \n  <b> Common Causes of low Anion Gap </b>
         \n \t laboratory error - most frequent cause of low AG

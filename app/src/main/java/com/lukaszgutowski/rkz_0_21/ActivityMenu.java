@@ -39,7 +39,7 @@ public class ActivityMenu extends AppCompatActivity {
         buttonInformacje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentInformacje = new Intent(ActivityMenu.this, ActivityInformacje.class);
+                Intent intentInformacje = new Intent(ActivityMenu.this, ActivityHelp.class);
                 startActivity(intentInformacje);
             }
         });
