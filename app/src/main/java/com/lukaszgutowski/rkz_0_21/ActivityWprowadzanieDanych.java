@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
-
+//TODO wszystkei wzory na SBE przerobić z użyciem aHCO3
     static double dajSbe ( double hco3, double ph) {
         return 0.9287 * (hco3 - 24.4 + 14.83 * (ph - 7.4));
     }
@@ -4585,13 +4585,15 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 EditText editTextPh = (EditText) findViewById(R.id.editTextPh);
                 EditText editTextPaco2 = (EditText) findViewById(R.id.editTextPaco2);
                 EditText editTextHco3 = (EditText) findViewById(R.id.editTextHco3);
+                //TODO znaleźć miejsce deklaracji aHCO3
+                EditText editTextAHco3 = (EditText) findViewById(R.id.editTextAHco3);
                 EditText editTextAg = (EditText) findViewById(R.id.editTextAg);
                 EditText editTextAlb = (EditText) findViewById(R.id.editTextAlb);
                 EditText editTextSbe = (EditText) findViewById(R.id.editTextSbe);
 
 
 
-
+                //TODO dopisac wszystkei możliwe warunki z sHCO3 i aHCO3, trochę tego będzie
                 if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextSbe.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 ){
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
@@ -4685,6 +4687,9 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                         editTextPaco2.setError("PaCO2 not entered ");
                     if(editTextHco3.length() ==0)
                         editTextHco3.setError("HCO3 not entered ");
+                    //TODO sprawdzić, czy to się nie wykrzacza
+                    if(editTextAHco3.length() ==0)
+                        editTextAHco3.setError("aHCO3 not entered ");
                     if(editTextAg.length() ==0)
                         editTextAg.setError("AG not entered ");
                 }
