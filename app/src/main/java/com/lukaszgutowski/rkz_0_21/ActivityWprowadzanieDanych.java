@@ -11,11 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
-//TODO wszystkei wzory na SBE przerobić z użyciem aHCO3
+
     static double dajSbe ( double ahco3, double ph) {
-        //TODO hco3 na aHCO3
+
         return 0.9287 * (ahco3 - 24.4 + 14.83 * (ph - 7.4));
-        //TODO czemu akurat te, a nie inne? sprawdzić jeszcze raz i porównać z danymi 24.8 i 16.... powinno wyjść mniej rzetelnie, ale jeszcze raz się upewnić, czy na pewno
+        //TODO sprawdzić jeszcze raz i porównać z danymi 24.8 i 16.... powinno wyjść mniej rzetelnie, ale jeszcze raz się upewnić, czy na pewno
     }
 
     static String deltaph  (double hco3, double paco2, double ph){
@@ -4599,8 +4599,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
                     double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-                    //TODO czy tu w ogóle jest potrzebne aHCO3 jeśli mamy SBE?
-                    double ahco3 = Double.parseDouble(editTextAHco3.getText().toString());
+
                     double sbe = Double.parseDouble(editTextSbe.getText().toString());
                     double ag = Double.parseDouble(editTextAg.getText().toString());
                     double alb = Double.parseDouble(editTextAlb.getText().toString());
@@ -4621,7 +4620,8 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 }
 
 
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 ){
+
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0  && editTextSbe.length() ==0){
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
                     double hco3 = Double.parseDouble(editTextHco3.getText().toString());
@@ -4629,8 +4629,9 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     double ag = Double.parseDouble(editTextAg.getText().toString());
                     double alb = Double.parseDouble(editTextAlb.getText().toString());
 
-                    double agc= dajAgc(alb, ag);
                     double sbe= dajSbe(ahco3, ph);
+
+                    double agc= dajAgc(alb, ag);
 
 
 
@@ -4640,16 +4641,18 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                     intentPrzejdzDoDiagnoz1.putExtra("3", metodaNadrzednaSbe(ph, sbe, paco2, hco3, ag ));
                     intentPrzejdzDoDiagnoz1.putExtra("4", metodaNadrzednaSbeAgc(ph, sbe, paco2, hco3, agc ));
                     intentPrzejdzDoDiagnoz1.putExtra("X", deltaph(hco3, paco2, ph));
+
                     startActivity(intentPrzejdzDoDiagnoz1);
 
                 }
 
 
 
-                if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextSbe.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 ){
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextSbe.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0  && editTextAHco3.length() ==0){
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
                     double hco3 = Double.parseDouble(editTextHco3.getText().toString());
+
                     double sbe = Double.parseDouble(editTextSbe.getText().toString());
                     double ag = Double.parseDouble(editTextAg.getText().toString());
                     double alb = Double.parseDouble(editTextAlb.getText().toString());
@@ -4678,13 +4681,12 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
 
 
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAHco3.length() !=0 && editTextSbe.length() !=0 && editTextAg.length() !=0 ){
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAHco3.length() !=0 && editTextSbe.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() ==0){
 
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
                     double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-                    //TODO ahCO3
-                    double ahco3 = Double.parseDouble(editTextAHco3.getText().toString());
+
                     double sbe = Double.parseDouble(editTextSbe.getText().toString());
                     double ag = Double.parseDouble(editTextAg.getText().toString());
 
@@ -4697,14 +4699,14 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
                 }
 
-
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0  && editTextSbe.length() !=0 && editTextAg.length() !=0 ){
+                //5
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0  && editTextSbe.length() !=0 && editTextAg.length() !=0  && editTextAHco3.length() ==0 && editTextAlb.length() ==0){
 
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
                     double hco3 = Double.parseDouble(editTextHco3.getText().toString());
-                    //TODO ahCO3
-                   // double ahco3 = Double.parseDouble(editTextAHco3.getText().toString());
+
+
                     double sbe = Double.parseDouble(editTextSbe.getText().toString());
                     double ag = Double.parseDouble(editTextAg.getText().toString());
 
@@ -4717,8 +4719,8 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
 
                 }
 
-
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAHco3.length() !=0  && editTextAg.length() !=0 ){
+                //6
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAHco3.length() !=0  && editTextAg.length() !=0  && editTextSbe.length() ==0 && editTextAlb.length() ==0 ){
 
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
@@ -4743,7 +4745,7 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 ////////////
 
 
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 ){
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAlb.length() !=0 && editTextAHco3.length() ==0 && editTextSbe.length() ==0){
 
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
@@ -4762,12 +4764,13 @@ public class ActivityWprowadzanieDanych extends AppCompatActivity {
                 }
 
 
-                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 ){
-
+                else if (editTextPh.length() !=0 && editTextPaco2.length() !=0 && editTextHco3.length() !=0 && editTextAg.length() !=0 && editTextAHco3.length() ==0 && editTextSbe.length() ==0 && editTextAlb.length() ==0){
+                    // && editTextAHco3.length() ==0 && editTextSbe.length() ==0 && editTextAlb.length() ==0
                     double ph = Double.parseDouble(editTextPh.getText().toString());
                     double paco2 = Double.parseDouble(editTextPaco2.getText().toString());
                     double hco3 = Double.parseDouble(editTextHco3.getText().toString());
                     double ag = Double.parseDouble(editTextAg.getText().toString());
+
 
 
                     Intent intentPrzejdzDoDiagnoz1 = new Intent(ActivityWprowadzanieDanych.this, ActivityPorownanieDiagnoz.class);

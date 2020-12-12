@@ -56,7 +56,7 @@ public class ActivityPorownanieDiagnoz extends AppCompatActivity {
         String UzyskanyWynikFizjologicznyAgc = getIntent().getStringExtra("2");
         if (UzyskanyWynikFizjologicznyAgc == null || UzyskanyWynikFizjologicznyAgc == "")
         {
-            UzyskanyWynikFizjologicznyAgc = "you didn't enter Alb";
+            UzyskanyWynikFizjologicznyAgc = "You didn't enter Alb";
         };
 
         String UzyskanyWynikBaseExcess = getIntent().getStringExtra("3");
@@ -110,12 +110,14 @@ public class ActivityPorownanieDiagnoz extends AppCompatActivity {
         }
 
         // only 1 method
-        else if (UzyskanyWynikFizjologicznyAgc.equals("you didn't enter Alb") && UzyskanyWynikBaseExcess.equals("You didn't enter SBE / aHCO3") && UzyskanyWynikBaseExcessAgc.equals("you didn't enter Alb")) {
+        else if (UzyskanyWynikFizjologicznyAgc.equals("You didn't enter Alb") && UzyskanyWynikBaseExcess.equals("You didn't enter SBE / aHCO3")) {
+            //    && UzyskanyWynikBaseExcessAgc.equals("you didn't enter Alb")
             textViewZgodnoscWynikow.setText("Only one approach has been used. The compliance of the results can't be calculated");
+            //TODO zastanowic sie czy nie skrocic tekstu, bo troche wystaje
             }
 
         // only 2 methods : 1, 2
-        else if (UzyskanyWynikBaseExcess.equals("You didn't enter SBE / aHCO3")&& UzyskanyWynikBaseExcessAgc.equals("you didn't enter Alb")) {
+        else if (UzyskanyWynikBaseExcess.equals("You didn't enter SBE / aHCO3")&& UzyskanyWynikBaseExcessAgc.equals("You didn't enter Alb")) {
             if ( UzyskanyWynikFizjologiczny.equals(UzyskanyWynikFizjologicznyAgc)){
                 textViewZgodnoscWynikow.setText("Comparing 2 approaches. The compliance of the results is 100%");
             }
@@ -127,7 +129,7 @@ public class ActivityPorownanieDiagnoz extends AppCompatActivity {
 
 
         // only 2 methods : 1, 3
-        else if (UzyskanyWynikFizjologicznyAgc.equals("you didn't enter Alb") && UzyskanyWynikBaseExcessAgc.equals("you didn't enter Alb")) {
+        else if (UzyskanyWynikFizjologicznyAgc.equals("You didn't enter Alb") && UzyskanyWynikBaseExcessAgc.equals("You didn't enter Alb")) {
             if ( UzyskanyWynikFizjologiczny.equals(UzyskanyWynikBaseExcess)){
                 textViewZgodnoscWynikow.setText("Comparing 2 approaches. The compliance of the results is 100%");
             }
