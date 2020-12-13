@@ -7,27 +7,28 @@
     tools:context=".ActivityWprowadzanieDanych">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="358dp"
-            android:layout_height="430dp"
-            app:layout_constraintBottom_toTopOf="@+id/buttonDiagnoza"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
-            app:layout_constraintVertical_bias="0.425" app:layout_constraintHorizontal_bias="1.0">
+        android:layout_width="0dp"
+        android:layout_height="430dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDiagnoza"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.425">
 
         <EditText
-                android:id="@+id/editTextPh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:ems="10"
-                android:hint="enter pH"
-                android:inputType="numberDecimal"
-                android:text=""
-                android:textSize="17sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+            android:id="@+id/editTextPh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:ems="10"
+            android:hint="enter pH"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textViewHco3"
@@ -70,60 +71,60 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewAHco3" />
 
         <EditText
-                android:id="@+id/editTextPaco2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="10dp"
-                android:ems="10"
-                android:hint="enter PaCO2 [mmHg]"
-                android:inputType="numberDecimal"
-                android:text=""
-                android:textSize="17sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextPh"/>
+            android:id="@+id/editTextPaco2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="10dp"
+            android:ems="10"
+            android:hint="enter PaCO2 [mmHg]"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPh" />
 
         <EditText
-                android:id="@+id/editTextAg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="10dp"
-                android:ems="10"
-                android:hint="enter AG [mEq/l]"
-                android:inputType="numberDecimal"
-                android:text=""
-                android:textSize="17sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextSbe"/>
+            android:id="@+id/editTextAg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="10dp"
+            android:ems="10"
+            android:hint="enter AG [mEq/l]"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSbe" />
 
         <EditText
-                android:id="@+id/editTextAlb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="10dp"
-                android:ems="10"
-                android:hint="enter Alb [g/l]"
-                android:inputType="numberDecimal"
-                android:text=""
-                android:textSize="17sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextAg"/>
+            android:id="@+id/editTextAlb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="10dp"
+            android:ems="10"
+            android:hint="enter Alb [g/l]"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextAg" />
 
         <EditText
-                android:id="@+id/editTextHco3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="10dp"
-                android:ems="10"
-                android:hint="enter sHCO3- [mmol/l]"
-                android:inputType="numberDecimal"
-                android:text=""
-                android:textSize="17sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextPaco2"/>
+            android:id="@+id/editTextHco3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="10dp"
+            android:ems="10"
+            android:hint="enter sHCO3- [mmol/l]"
+            android:inputType="numberDecimal"
+            android:text=""
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPaco2" />
 
         <EditText
             android:id="@+id/editTextAHco3"
@@ -168,32 +169,32 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewSbe" />
 
         <TextView
-                android:id="@+id/textViewAlb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="33dp"
-                android:layout_marginEnd="10dp"
-                android:text="Albumin"
-                android:textSize="19sp"
-                app:layout_constraintEnd_toStartOf="@+id/editTextAlb"
-                app:layout_constraintHorizontal_bias="0.1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewAg"/>
+            android:id="@+id/textViewAlb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="10dp"
+            android:text="Albumin"
+            android:textSize="19sp"
+            app:layout_constraintEnd_toStartOf="@+id/editTextAlb"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAg" />
 
         <TextView
-                android:id="@+id/textViewPh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="10dp"
-                android:text="pH"
-                android:textSize="19sp"
-                app:layout_constraintEnd_toStartOf="@+id/editTextPh"
-                app:layout_constraintHorizontal_bias="0.072"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+            android:id="@+id/textViewPh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="10dp"
+            android:text="pH"
+            android:textSize="19sp"
+            app:layout_constraintEnd_toStartOf="@+id/editTextPh"
+            app:layout_constraintHorizontal_bias="0.072"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textViewPaco2"
